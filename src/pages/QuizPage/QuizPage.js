@@ -4,11 +4,12 @@ import Question from "../../components/Question/Question";
 import { Button, Box, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { decrementCategory, incrementCategory, resetQuiz } from "../../redux/features/QuizSlice";
+import { useNavigate } from "react-router-dom";
 
 const QuizPage = ({ onFinish }) => {
   const dispatch = useDispatch();
   const responses = useSelector((state) => state?.quizCategories?.responses);
-
+const navigate= useNavigate()
   console.log("state validating", responses);
 
   const [isQuizCompleted, setIsQuizCompleted] = useState(false);
@@ -57,7 +58,9 @@ const QuizPage = ({ onFinish }) => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion((prev) => prev + 1);
     } else {
-      setIsQuizCompleted(true); // Mark quiz as completed
+      setIsQuizCompleted(true);
+      navigate("/result")
+      // Mark quiz as completed
     }
   };
 
@@ -89,38 +92,9 @@ const QuizPage = ({ onFinish }) => {
     >
       {isQuizCompleted ? (
         // Quiz completion view
-        <Box
-          sx={{
-            textAlign: "center",
-            padding: "2rem",
-            background: "#fff",
-            borderRadius: "0.5rem",
-            width: "50%",
-          }}
-        >
-          <Typography variant="h4" sx={{ marginBottom: "1rem" }}>
-            Quiz Completed!
-          </Typography>
-
-          {/* Display Category Response Counts */}
-          <Box sx={{ marginBottom: "1rem" }}>
-            <Typography variant="h6">Category Response Counts:</Typography>
-            <Typography variant="body1">
-              Disruptive Innovators: {responses["DisruptiveInnovator"]}
-            </Typography>
-            <Typography variant="body1">
-              Real Worlders: {responses["RealWorlders"]}
-            </Typography>
-            <Typography variant="body1">
-              Implementation Specialists:{" "}
-              {responses["ImplementationSpecialists"]}
-            </Typography>
-          </Box>
-
-          <Button variant="contained" onClick={handleRestartQuiz}>
-            Restart Quiz
-          </Button>
-        </Box>
+        <>
+          
+        </>
       ) : (
         // Quiz question view
         <Box

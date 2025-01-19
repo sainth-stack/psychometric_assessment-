@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ConditionsPage from "./pages/ConditionsPage";
 import QuizPage from "./pages/QuizPage/QuizPage";
+import PieGraphPage from "./pages/Graphs/PieGraphPage";
 
 
 const App = () => {
@@ -26,12 +27,13 @@ const App = () => {
           path="/quiz"
           element={
             quizStarted ? (
-              <QuizPage onFinish={finishQuiz}  />
+              <QuizPage onFinish={finishQuiz} />
             ) : (
               <ConditionsPage onStart={startQuiz} />
             )
           }
         />
+        <Route path="/result" element={<PieGraphPage />} />
       </Routes>
     </Router>
   );
