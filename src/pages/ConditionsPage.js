@@ -45,7 +45,7 @@ const ConditionsPage = ({ onStart }) => {
         >
           <Box sx={{ marginRight: -10 }}>
             <img
-               src={logo} // Replace with your logo URL
+              //  src={logo} // Replace with your logo URL
               alt="Company Logo"
               style={{ height: "70px"}}
             />

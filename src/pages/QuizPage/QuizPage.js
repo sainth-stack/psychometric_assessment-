@@ -2,40 +2,58 @@ import React, { useState } from "react";
 import { questions } from "../../data/QuestionsData";
 import Question from "../../components/Question/Question";
 import { Button, Box, Typography } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { decrementCategory, incrementCategory, resetQuiz } from "../../redux/features/QuizSlice";
 
 const QuizPage = ({ onFinish }) => {
-  const [responses, setResponses] = useState({
-    DisruptiveInnovator: 0,
-    RealWorlders: 0,
-    ImplementationSpecialists: 0,
-  });
+  const dispatch = useDispatch();
+  const responses = useSelector((state) => state?.quizCategories?.responses);
+
+  console.log("state validating", responses);
 
   const [isQuizCompleted, setIsQuizCompleted] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState([]);
+  const [showWarning, setShowWarning] = useState(false);
 
   // Handle option selection
- const handleOptionSelect = (selectedOption) => {
-   if (answers[currentQuestion] !== selectedOption.label) {
-     // Check if the option is different from the previous selection
-     const updatedAnswers = [...answers];
-     const previousAnswer = updatedAnswers[currentQuestion];
+ 
+  const handleOptionSelect = (selectedOption) => {
 
-     // Update the selected answer
-     updatedAnswers[currentQuestion] = selectedOption.label;
-     setAnswers(updatedAnswers);
+    console.log("options checkinf", selectedOption);
+    // Check if the current selected option is the same as the previous answer
+    if (answers[currentQuestion] !== selectedOption?.label) {
+      const updatedAnswers = [...answers];
+      const previousAnswer = updatedAnswers[currentQuestion];
 
-     // Increment the category count for the selected answer
-     setResponses((prevResponses) => ({
-       ...prevResponses,
-       [selectedOption.category]: prevResponses[selectedOption.category] + 1, // Increment category count only once per question
-     }));
-   }
- };
+      // If there's a previous answer, decrement its category count
+      if (previousAnswer) {
+        const previousSelectedOption = questions[currentQuestion].options.find(
+          (option) => option.label === previousAnswer
+        );
+        if (previousSelectedOption) {
+          dispatch(
+            decrementCategory({ category: previousSelectedOption.category })
+          );
+        }
+      }
 
+      // Update the selected answer
+      updatedAnswers[currentQuestion] = selectedOption.label;
+      setAnswers(updatedAnswers);
+      setShowWarning(false);
+
+      // Increment the category count for the newly selected answer
+      dispatch(incrementCategory({ category: selectedOption.category }));
+    }
+  };
 
   // Handle next question navigation
   const handleNext = () => {
+    if (!answers[currentQuestion]) {
+      setShowWarning(true);
+      return;
+    }
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion((prev) => prev + 1);
     } else {
@@ -48,6 +66,7 @@ const QuizPage = ({ onFinish }) => {
     if (currentQuestion > 0) {
       setCurrentQuestion((prev) => prev - 1);
     }
+    setShowWarning(false);
   };
 
   // Restart the quiz
@@ -55,11 +74,8 @@ const QuizPage = ({ onFinish }) => {
     setCurrentQuestion(0);
     setAnswers([]);
     setIsQuizCompleted(false);
-    setResponses({
-      DisruptiveInnovator: 0,
-      RealWorlders: 0,
-      ImplementationSpecialists: 0,
-    });
+    dispatch(resetQuiz());
+    setShowWarning(false);
   };
 
   return (
@@ -126,8 +142,6 @@ const QuizPage = ({ onFinish }) => {
             selectedAnswer={answers[currentQuestion]} // Pass selected answer
           />
 
-         
-
           {/* Navigation Buttons */}
           <Box
             sx={{
@@ -143,7 +157,17 @@ const QuizPage = ({ onFinish }) => {
               variant="outlined"
               onClick={handleBack}
               disabled={currentQuestion === 0}
-              sx={{ margin: 2, width: "150px" }}
+              sx={{
+                margin: 2,
+                width: "150px",
+                "&:hover": {
+                  backgroundColor: "#bed2e6",
+                  color: "#1E1E10",
+                  fontWeight: "bold", // Background color on hover
+                  transform: "scale(1.05)", // Slight scaling effect
+                  transition: "transform 0.2s ease-in-out", // Smooth transition
+                },
+              }}
             >
               Back
             </Button>
@@ -151,6 +175,7 @@ const QuizPage = ({ onFinish }) => {
               variant="contained"
               sx={{ margin: 2, width: "150px" }}
               onClick={handleNext}
+              disabled={!answers[currentQuestion]}
             >
               {currentQuestion === questions.length - 1 ? "Submit" : "Next"}
             </Button>

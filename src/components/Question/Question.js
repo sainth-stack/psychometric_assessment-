@@ -76,9 +76,9 @@ const Question = ({
               }}
               onClick={() => onOptionSelect(option)} // Pass the option object to handleOptionSelect
             >
-              {option.isImage && option.imageUrl ? (
+              {option.isImage && option.image ? (
                 <img
-                  src={option.imageUrl}
+                  src={option.image}
                   alt={option.option}
                   style={{
                     width: "6rem",
