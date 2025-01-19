@@ -1,5 +1,5 @@
 import React from "react";
-import { Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2"; // Import Doughnut instead of Pie
 import {
   Chart as ChartJS,
   Title,
@@ -22,7 +22,7 @@ ChartJS.register(
   LinearScale
 );
 
-const PieChart = ({ labels, data, colors, title }) => {
+const DoughnutChart = ({ labels, data, colors, title }) => {
   const chartData = {
     labels: labels || [],
     datasets: [
@@ -30,6 +30,8 @@ const PieChart = ({ labels, data, colors, title }) => {
         data: data || [],
         backgroundColor: colors || [],
         hoverBackgroundColor: colors || [],
+        borderWidth: 5,
+        borderRadius: 10, // Add this line to round the corners
       },
     ],
   };
@@ -38,11 +40,13 @@ const PieChart = ({ labels, data, colors, title }) => {
     responsive: true,
     plugins: {
       title: {
-        // display: true,
-        // text: title || "Pie Chart", // Display the title if provided
+        display: !!title,
+        text: title || "Doughnut Chart", // Display the title if provided
+        font: {
+          size: 18,
+        },
       },
-        legend: {
-        //   display:false,
+      legend: {
         position: "top",
         labels: {
           font: {
@@ -52,7 +56,6 @@ const PieChart = ({ labels, data, colors, title }) => {
           padding: 20, // Increase the padding between legend items
         },
       },
-
       tooltip: {
         callbacks: {
           label: (context) => {
@@ -62,19 +65,20 @@ const PieChart = ({ labels, data, colors, title }) => {
         },
       },
     },
-    };
-    
-    const isDataEmpty = data?.every((value) => value === 0);
+    cutout: "50%", // Adds a hole in the center to create a doughnut effect
+  };
 
-    console.log("Data prop",data)
+  const isDataEmpty = data?.every((value) => value === 0);
+
+  console.log("Data prop", data);
 
   return isDataEmpty ? (
     <NoDataFound />
   ) : (
-    <Paper  style={{ padding: "16px" }}>
-      <Pie data={chartData} options={options} />
+    <Paper style={{ padding: "16px" }}>
+      <Doughnut data={chartData} options={options} /> {/* Use Doughnut here */}
     </Paper>
   );
 };
 
-export default PieChart;
+export default DoughnutChart;
