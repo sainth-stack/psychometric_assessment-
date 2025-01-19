@@ -20,7 +20,7 @@ const NoDataFound = () => {
       sx={{
         backgroundColor: "#f5f5f5",
         borderRadius: 2,
-        padding: 3,
+        // padding: 3,
         textAlign: "center",
       }}
     >

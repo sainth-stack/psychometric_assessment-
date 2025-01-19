@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import DoughnutChart from "../../components/graphs/DoughnutGraph";
-import { Box,Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 
 const PieGraphPage = () => {
   const categories = useSelector((state) => state?.quizCategories?.responses);
 
-  console.log("categotirs",categories)
+  console.log("categories", categories);
 
   const chartData = Object.values(categories);
   const labels = Object.keys(categories);
@@ -30,16 +30,22 @@ const PieGraphPage = () => {
         alignItems="center"
         sx={{
           backgroundColor: "#fff",
-          padding: 4,
+          padding: "1rem", // Increased padding
           borderRadius: 2,
           boxShadow: 3,
+        
         }}
       >
         {/* Percentages Section */}
-        <Box container direction="column" alignItems="flex-start" spacing={2}>
+        <Box container direction="column" alignItems="flex-start" spacing={3}>
           <Typography
             variant="h5"
-            sx={{ marginLeft: "2rem", fontWeight: "bold", padding: "1.5rem" }}
+            sx={{
+              marginLeft: "2rem",
+              fontWeight: "bold",
+              padding: "2rem", // Increased padding
+              fontSize: "2rem", // Increased font size for title
+            }}
           >
             Personality Breakdown
           </Typography>
@@ -49,10 +55,10 @@ const PieGraphPage = () => {
                 <span
                   style={{
                     fontWeight: "bold",
-                    fontSize: "1.7rem",
+                    fontSize: "2rem", // Increased font size
                     marginTop: ".2rem",
                     display: "inline-block",
-                    color: colors[index], 
+                    color: colors[index],
                   }}
                 >
                   {percentages[index]}%
@@ -61,8 +67,8 @@ const PieGraphPage = () => {
                 <span
                   style={{
                     color: "#555",
-                    fontSize: "1rem",
-                    marginBottom: ".6rem",
+                    fontSize: "1.2rem", // Increased font size
+                    marginBottom: ".8rem", // Increased margin
                     display: "inline-block",
                     fontWeight: "700",
                   }}
@@ -75,7 +81,9 @@ const PieGraphPage = () => {
         </Box>
 
         {/* Doughnut Chart Section */}
-        <Box>
+        <Box >
+        
+          {/* Increased width for Doughnut Chart */}
           <DoughnutChart labels={labels} data={chartData} colors={colors} />
         </Box>
       </Box>

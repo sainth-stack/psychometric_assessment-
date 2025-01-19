@@ -40,7 +40,7 @@ const DoughnutChart = ({ labels, data, colors, title }) => {
     responsive: true,
     plugins: {
       title: {
-        display: !!title,
+        display:false,
         text: title || "Doughnut Chart", // Display the title if provided
         font: {
           size: 18,
@@ -53,7 +53,7 @@ const DoughnutChart = ({ labels, data, colors, title }) => {
             size: 16, // Increase the font size for the legend
             weight: "bold", // Optional: Make the text bold
           },
-          padding: 20, // Increase the padding between legend items
+          // padding: 20, // Increase the padding between legend items
         },
       },
       tooltip: {
@@ -75,8 +75,8 @@ const DoughnutChart = ({ labels, data, colors, title }) => {
   return isDataEmpty ? (
     <NoDataFound />
   ) : (
-    <Paper style={{ padding: "16px" }}>
-      <Doughnut data={chartData} options={options} /> {/* Use Doughnut here */}
+      <Paper sx={{ backgroundColor: "#fffafa", borderRadius: 2,objectFit:"contain" }}>
+      <Doughnut data={chartData} options={options} /> 
     </Paper>
   );
 };
