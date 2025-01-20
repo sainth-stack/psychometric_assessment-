@@ -68,9 +68,9 @@ const Timer = ({ onTimeUp,setIsQuizCompleted, onFinish, initialTime = 300 }) => 
       <Box>
         <Button
           variant="contained"
-          color="primary"
           onClick={onFinish}
           sx={{
+            background: "#847F3B",
             padding: "10px 20px",
             fontSize: "1rem",
           }}

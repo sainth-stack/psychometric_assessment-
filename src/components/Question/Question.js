@@ -70,9 +70,17 @@ const Question = ({
                 padding: "8px 20px",
                 textTransform: "none",
                 color: "#000",
-                border: "1px solid #000",
+                border:
+                  selectedAnswer === option.label
+                    ? option.isImage && option.image
+                      ? "2px solid #EBBE2D" 
+                      : "" 
+                    : "1px solid #000",
                 backgroundColor:
-                  selectedAnswer === option.label ? "#bed2e6" : "#fff", // Highlight selected answer
+                  selectedAnswer === option.label &&
+                  !(option.isImage && option.image)
+                    ? "#EBBE2D" 
+                    : "#fff", 
               }}
               onClick={() => onOptionSelect(option)} // Pass the option object to handleOptionSelect
             >
@@ -81,10 +89,11 @@ const Question = ({
                   src={option.image}
                   alt={option.option}
                   style={{
-                    width: "6rem",
+                    width: "12.5rem",
                     height: "6rem",
-                    marginBottom: "0.5rem",
+                    borderRadius:".2rem",
                     objectFit: "contain",
+
                   }}
                 />
               ) : (

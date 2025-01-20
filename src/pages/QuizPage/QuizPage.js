@@ -92,9 +92,7 @@ const navigate= useNavigate()
     >
       {isQuizCompleted ? (
         // Quiz completion view
-        <>
-          
-        </>
+        <></>
       ) : (
         // Quiz question view
         <Box
@@ -134,11 +132,14 @@ const navigate= useNavigate()
               sx={{
                 margin: 2,
                 width: "150px",
+                borderColor: "#000",
+                color: "#000",
                 "&:hover": {
-                  backgroundColor: "#bed2e6",
-                  color: "#1E1E10",
+                  color: "#000",
+
+                  borderColor: "#000",
                   fontWeight: "bold", // Background color on hover
-                  transform: "scale(1.05)", // Slight scaling effect
+                  transform: "scale(1.005)", // Slight scaling effect
                   transition: "transform 0.2s ease-in-out", // Smooth transition
                 },
               }}
@@ -147,7 +148,11 @@ const navigate= useNavigate()
             </Button>
             <Button
               variant="contained"
-              sx={{ margin: 2, width: "150px" }}
+              sx={{
+                margin: 2,
+                width: "150px",
+                background: "#847F3B",
+              }}
               onClick={handleNext}
               disabled={!answers[currentQuestion]}
             >

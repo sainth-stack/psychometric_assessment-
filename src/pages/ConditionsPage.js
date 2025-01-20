@@ -20,18 +20,18 @@ const ConditionsPage = ({ onStart }) => {
     <Box
       sx={{
         display: "flex",
-        justifyContent: "center", 
-        alignItems: "center", 
-        minHeight: "100vh", 
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
       }}
     >
       <Box
         sx={{
           textAlign: "center",
-          background: "#fff", 
+          background: "#fff",
           borderRadius: ".5rem",
           padding: 2,
-          width: "60%", 
+          width: "60%",
         }}
       >
         {/* Header with logo and title */}
@@ -45,9 +45,9 @@ const ConditionsPage = ({ onStart }) => {
         >
           <Box sx={{ marginRight: -10 }}>
             <img
-              //  src={logo} // Replace with your logo URL
+               src={logo} // Replace with your logo URL
               alt="Company Logo"
-              style={{ height: "70px"}}
+              style={{ height: "70px" }}
             />
           </Box>
 
@@ -69,7 +69,6 @@ const ConditionsPage = ({ onStart }) => {
             padding: 2,
             borderRadius: "0.4rem",
             border: "1px solid #9d9d9d",
-            
           }}
         >
           <Typography
@@ -112,13 +111,24 @@ const ConditionsPage = ({ onStart }) => {
 
           {/* Start Button */}
           <Box
-            sx={{ marginTop: 2, display: "flex", justifyContent: "flex-end" }}
+            sx={{
+              marginTop: 2,
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
           >
             <Button
               variant="contained"
-              color="primary"
               onClick={handleStart}
               disabled={!checked}
+              sx={{
+                background: "#847F3B",
+                color: "#FFFFFF",
+                "&:hover": {
+                  background: "#6E6B30",
+                },
+               
+              }}
             >
               Start Quiz
             </Button>

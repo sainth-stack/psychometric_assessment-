@@ -53,94 +53,94 @@ export const questions = [
        },
      ],
    },
-  //  {
-  //    id: 3,
-  //    question: "What drives your curiosity?",
-  //     answer: "A",
-  //    options: [
-  //      {
-  //        label: "A",
-  //        text: "Discovery",
-  //        category: "DisruptiveInnovator",
-  //      },
-  //      {
-  //        label: "B",
-  //        text: "Solutions",
-  //        category: "RealWorlders",
-  //      },
-  //      {
-  //        label: "C",
-  //        text: "Process",
-  //        category: "ImplementationSpecialists",
-  //      },
-  //    ],
-  //  },
-  //  {
-  //    id: 4,
-  //    question: "What’s your first step in problem-solving?",
-  //     answer: "A",
-  //    options: [
-  //      {
-  //        label: "A",
-  //        text: "Ideate",
-  //        category: "DisruptiveInnovator",
-  //      },
-  //      {
-  //        label: "B",
-  //        text: "Research",
-  //        category: "RealWorlders",
-  //      },
-  //      {
-  //        label: "C",
-  //        text: "Execute",
-  //        category: "ImplementationSpecialists",
-  //      },
-  //    ],
-  //  },
-  //  {
-  //    id: 5,
-  //    question: "What’s your role in team building?",
-  //     answer: "A",
-  //    options: [
-  //      {
-  //        label: "A",
-  //        text: "Visionary",
-  //        category: "DisruptiveInnovator",
-  //      },
-  //      {
-  //        label: "B",
-  //        text: "Supporter",
-  //        category: "RealWorlders",
-  //      },
-  //      {
-  //        label: "C",
-  //        text: "Coordinator",
-  //        category: "ImplementationSpecialists",
-  //      },
-  //    ],
-  //  },
-  //  {
-  //    id: 6,
-  //    question: "What’s your work environment preference?",
-  //     answer: "A",
-  //    options: [
-  //      {
-  //        label: "A",
-  //        text: "Dynamic",
-  //        category: "DisruptiveInnovator",
-  //      },
-  //      {
-  //        label: "B",
-  //        text: "Balanced",
-  //        category: "RealWorlders",
-  //      },
-  //      {
-  //        label: "C",
-  //        text: "Structured",
-  //        category: "ImplementationSpecialists",
-  //      },
-  //    ],
-  //  },
+    {
+      id: 3,
+      question: "What drives your curiosity?",
+       answer: "A",
+      options: [
+        {
+          label: "A",
+          text: "Discovery",
+          category: "DisruptiveInnovator",
+        },
+        {
+          label: "B",
+          text: "Solutions",
+          category: "RealWorlders",
+        },
+        {
+          label: "C",
+          text: "Process",
+          category: "ImplementationSpecialists",
+        },
+      ],
+    },
+    {
+      id: 4,
+      question: "What’s your first step in problem-solving?",
+       answer: "A",
+      options: [
+        {
+          label: "A",
+          text: "Ideate",
+          category: "DisruptiveInnovator",
+        },
+        {
+          label: "B",
+          text: "Research",
+          category: "RealWorlders",
+        },
+        {
+          label: "C",
+          text: "Execute",
+          category: "ImplementationSpecialists",
+        },
+      ],
+    },
+    {
+      id: 5,
+      question: "What’s your role in team building?",
+       answer: "A",
+      options: [
+        {
+          label: "A",
+          text: "Visionary",
+          category: "DisruptiveInnovator",
+        },
+        {
+          label: "B",
+          text: "Supporter",
+          category: "RealWorlders",
+        },
+        {
+          label: "C",
+          text: "Coordinator",
+          category: "ImplementationSpecialists",
+        },
+      ],
+    },
+    {
+      id: 6,
+      question: "What’s your work environment preference?",
+       answer: "A",
+      options: [
+        {
+          label: "A",
+          text: "Dynamic",
+          category: "DisruptiveInnovator",
+        },
+        {
+          label: "B",
+          text: "Balanced",
+          category: "RealWorlders",
+        },
+        {
+          label: "C",
+          text: "Structured",
+          category: "ImplementationSpecialists",
+        },
+      ],
+    },
   //  {
   //    id: 7,
   //    question: "How do you manage pressure?",
