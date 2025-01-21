@@ -1,35 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { questions } from "../../data/QuestionsData";
 import Question from "../../components/Question/Question";
 import { Button, Box, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { decrementCategory, incrementCategory, resetQuiz } from "../../redux/features/QuizSlice";
+import {
+  decrementCategory,
+  incrementCategory,
+  resetQuiz,
+} from "../../redux/features/QuizSlice";
 import { useNavigate } from "react-router-dom";
 
 const QuizPage = ({ onFinish }) => {
   const dispatch = useDispatch();
+  const [currentQuestions, setCurrentQuestions] = useState([]);
   const responses = useSelector((state) => state?.quizCategories?.responses);
-const navigate= useNavigate()
-  console.log("state validating", responses);
+  const navigate = useNavigate();
+  console.log("responses", responses);
+
+  useLayoutEffect(() => {
+    console.log('heeyy')
+    const shuffleArray = (array) => {
+      console.log('heeyyds')
+
+      const shuffled = [...array]; // Create a copy to avoid mutating the original array
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const randomIndex = Math.floor(Math.random() * (i + 1)); // Random index from 0 to i
+        [shuffled[i], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[i]]; // Swap elements
+      }
+      return shuffled;
+    };
+    console.log(shuffleArray(questions))
+    setCurrentQuestions(shuffleArray(questions));
+  }, []);
 
   const [isQuizCompleted, setIsQuizCompleted] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [showWarning, setShowWarning] = useState(false);
 
-  // Handle option selection
- 
   const handleOptionSelect = (selectedOption) => {
-
     console.log("options checkinf", selectedOption);
-    // Check if the current selected option is the same as the previous answer
     if (answers[currentQuestion] !== selectedOption?.label) {
       const updatedAnswers = [...answers];
       const previousAnswer = updatedAnswers[currentQuestion];
 
-      // If there's a previous answer, decrement its category count
       if (previousAnswer) {
-        const previousSelectedOption = questions[currentQuestion].options.find(
+        const previousSelectedOption = currentQuestions[currentQuestion].options.find(
           (option) => option.label === previousAnswer
         );
         if (previousSelectedOption) {
@@ -39,12 +55,9 @@ const navigate= useNavigate()
         }
       }
 
-      // Update the selected answer
       updatedAnswers[currentQuestion] = selectedOption.label;
       setAnswers(updatedAnswers);
       setShowWarning(false);
-
-      // Increment the category count for the newly selected answer
       dispatch(incrementCategory({ category: selectedOption.category }));
     }
   };
@@ -55,11 +68,11 @@ const navigate= useNavigate()
       setShowWarning(true);
       return;
     }
-    if (currentQuestion < questions.length - 1) {
+    if (currentQuestion < currentQuestions.length - 1) {
       setCurrentQuestion((prev) => prev + 1);
     } else {
       setIsQuizCompleted(true);
-      navigate("/result")
+      navigate("/result");
       // Mark quiz as completed
     }
   };
@@ -69,15 +82,6 @@ const navigate= useNavigate()
     if (currentQuestion > 0) {
       setCurrentQuestion((prev) => prev - 1);
     }
-    setShowWarning(false);
-  };
-
-  // Restart the quiz
-  const handleRestartQuiz = () => {
-    setCurrentQuestion(0);
-    setAnswers([]);
-    setIsQuizCompleted(false);
-    dispatch(resetQuiz());
     setShowWarning(false);
   };
 
@@ -108,18 +112,17 @@ const navigate= useNavigate()
           {/* Question Component */}
           <Question
             setIsQuizCompleted={setIsQuizCompleted}
-            questionData={questions[currentQuestion]}
+            questionData={currentQuestions[currentQuestion]}
             currentQuestion={currentQuestion + 1}
             onOptionSelect={handleOptionSelect}
             selectedAnswer={answers[currentQuestion]} // Pass selected answer
           />
 
-          {/* Navigation Buttons */}
           <Box
             sx={{
               display: "flex",
               justifyContent: "flex-end",
-              width: "80%",
+              width: "100%",
               alignItems: "flex-end",
               marginTop: 1,
               padding: "1rem",
@@ -134,9 +137,9 @@ const navigate= useNavigate()
                 width: "150px",
                 borderColor: "#000",
                 color: "#000",
+                fontFamily: "inherit",
                 "&:hover": {
                   color: "#000",
-
                   borderColor: "#000",
                   fontWeight: "bold", // Background color on hover
                   transform: "scale(1.005)", // Slight scaling effect
@@ -152,21 +155,23 @@ const navigate= useNavigate()
                 margin: 2,
                 width: "150px",
                 background: "#847F3B",
+                fontFamily: "inherit",
               }}
               onClick={handleNext}
               disabled={!answers[currentQuestion]}
             >
-              {currentQuestion === questions.length - 1 ? "Submit" : "Next"}
+              {currentQuestion === currentQuestions.length - 1 ? "Submit" : "Next"}
             </Button>
           </Box>
 
-          <Box sx={{ width: "100%", padding: "1rem" }}>
+          <Box sx={{ width: "100%" }}>
             <Typography
               sx={{
                 marginTop: 4,
-                padding: "1rem",
+                padding: "0rem 0rem 1rem 1rem",
                 textAlign: "left",
                 textDecoration: "none",
+                margin: "0px",
                 cursor: "pointer",
               }}
               color="primary"

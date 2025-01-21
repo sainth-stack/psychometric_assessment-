@@ -40,32 +40,21 @@ const DoughnutChart = ({ labels, data, colors, title }) => {
     responsive: true,
     plugins: {
       title: {
-        display:false,
-        text: title || "Doughnut Chart", // Display the title if provided
-        font: {
-          size: 18,
-        },
+        display: false, // Disable the title
       },
       legend: {
-        position: "top",
-        labels: {
-          font: {
-            size: 16, // Increase the font size for the legend
-            weight: "bold", // Optional: Make the text bold
-          },
-          // padding: 20, // Increase the padding between legend items
-        },
+        display: false, // Disable the legend
       },
       tooltip: {
         callbacks: {
           label: (context) => {
             const value = context.raw;
-            return `${context.label}: ${value}`;
+            return `${context.label}: ${value}%`; // Format tooltips with percentage
           },
         },
       },
     },
-    cutout: "50%", // Adds a hole in the center to create a doughnut effect
+    cutout: "60%", // Adjust the size of the center hole for a cleaner doughnut effect
   };
 
   const isDataEmpty = data?.every((value) => value === 0);
@@ -75,9 +64,7 @@ const DoughnutChart = ({ labels, data, colors, title }) => {
   return isDataEmpty ? (
     <NoDataFound />
   ) : (
-      <Paper sx={{ backgroundColor: "#fffafa", borderRadius: 2,objectFit:"contain" }}>
-      <Doughnut data={chartData} options={options} /> 
-    </Paper>
+    <Doughnut data={chartData} options={options} />
   );
 };
 

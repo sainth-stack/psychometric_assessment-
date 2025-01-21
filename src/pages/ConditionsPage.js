@@ -3,6 +3,8 @@ import { conditions } from "../data/ConditionsData";
 import { Box, Typography, Checkbox, Button, Paper } from "@mui/material";
 import logo from "../Images/Logo.png"
 import { useNavigate } from "react-router-dom";
+import { questions } from "../data/QuestionsData";
+
 const ConditionsPage = ({ onStart }) => {
   const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
@@ -56,7 +58,7 @@ const ConditionsPage = ({ onStart }) => {
               Psychometric Test
             </Typography>
             <Typography variant="body1" sx={{ fontWeight: 600 }}>
-              3 Questions | 5 Minutes
+              {questions.length} Questions | 5 Minutes
             </Typography>
           </Box>
         </Box>

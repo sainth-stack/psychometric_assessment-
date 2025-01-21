@@ -3,7 +3,12 @@ import React, { useEffect, useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import TimerSharpIcon from "@mui/icons-material/TimerSharp";
 
-const Timer = ({ onTimeUp,setIsQuizCompleted, onFinish, initialTime = 300 }) => {
+const Timer = ({
+  onTimeUp,
+  setIsQuizCompleted,
+  onFinish,
+  initialTime = 300,
+}) => {
   const [timeLeft, setTimeLeft] = useState(initialTime); // Set default to 5 minutes (300 seconds)
 
   useEffect(() => {
@@ -34,11 +39,12 @@ const Timer = ({ onTimeUp,setIsQuizCompleted, onFinish, initialTime = 300 }) => 
         justifyContent: "space-between",
         alignItems: "center",
         width: "100%",
-        margin: "1rem 2rem",
-        padding: "1rem",
-        backgroundColor: "#f9f9f9",
+        margin: "1.5rem",
+        marginBottom: "0px",
+        // padding: "1rem",
+        backgroundColor: "#fff",
         borderRadius: "8px",
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
       }}
     >
       <Box
@@ -71,7 +77,7 @@ const Timer = ({ onTimeUp,setIsQuizCompleted, onFinish, initialTime = 300 }) => 
           onClick={onFinish}
           sx={{
             background: "#847F3B",
-            padding: "10px 20px",
+            padding: "4px 20px",
             fontSize: "1rem",
           }}
         >

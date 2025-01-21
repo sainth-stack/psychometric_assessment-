@@ -4,7 +4,6 @@ import ConditionsPage from "./pages/ConditionsPage";
 import QuizPage from "./pages/QuizPage/QuizPage";
 import PieGraphPage from "./pages/Graphs/PieGraphPage";
 
-
 const App = () => {
   const [quizStarted, setQuizStarted] = useState(false);
 
@@ -13,7 +12,6 @@ const App = () => {
   const finishQuiz = () => {
     alert("Time's up or quiz completed!");
     setQuizStarted(false);
-  
   };
 
   return (

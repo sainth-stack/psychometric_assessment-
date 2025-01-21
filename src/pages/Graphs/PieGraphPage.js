@@ -14,7 +14,7 @@ const PieGraphPage = () => {
 
   const total = chartData?.reduce((sum, value) => sum + value, 0);
   const percentages = chartData.map((value) =>
-    total > 0 ? ((value / total) * 100).toFixed(2) : "0.00"
+    total > 0 ? ((value / total) * 100).toFixed(1) : "0.0"
   );
 
   return (
@@ -55,7 +55,7 @@ const PieGraphPage = () => {
                 <span
                   style={{
                     fontWeight: "bold",
-                    fontSize: "2rem", // Increased font size
+                    fontSize: "2rem",
                     marginTop: ".2rem",
                     display: "inline-block",
                     color: colors[index],
@@ -67,8 +67,8 @@ const PieGraphPage = () => {
                 <span
                   style={{
                     color: "#555",
-                    fontSize: "1.2rem", // Increased font size
-                    marginBottom: ".8rem", // Increased margin
+                    fontSize: "1.2rem",
+                    marginBottom: ".8rem",
                     display: "inline-block",
                     fontWeight: "700",
                   }}
