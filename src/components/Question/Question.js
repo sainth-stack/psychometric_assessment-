@@ -3,6 +3,7 @@ import { Button, Box, Typography, Grid } from "@mui/material";
 import Timer from "../Timer/Timer";
 import { useNavigate } from "react-router-dom";
 import { questions } from "../../data/QuestionsData";
+import toast from "react-hot-toast";
 
 const Question = ({
   questionData,
@@ -15,7 +16,7 @@ const Question = ({
   const navigate = useNavigate();
 
   const handleTimeUp = () => {
-    alert("Time's up!");
+    toast.error("Time's up!");
     // navigate("/") // Uncomment for redirecting on timeout
   };
 

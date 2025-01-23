@@ -4,6 +4,7 @@ import { Box, Typography, Checkbox, Button, Paper } from "@mui/material";
 import logo from "../Images/Logo.png"
 import { useNavigate } from "react-router-dom";
 import { questions } from "../data/QuestionsData";
+import toast from "react-hot-toast";
 
 const ConditionsPage = ({ onStart }) => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const ConditionsPage = ({ onStart }) => {
       onStart();
       navigate("/quiz")
     } else {
-      alert("Please accept the conditions to start the quiz.");
+      toast.info("Please accept the conditions to start the quiz.");
     }
   };
 
