@@ -1,11 +1,10 @@
-import img1 from "../Images/testingImags/image1.png"
-import testImage from "../Images/Train.png";
+import img1 from "../Images/testingImags/trainImage.png";
 
-import img2 from "../Images/testingImags/image2.png";
-import img3 from "../Images/testingImags/image3.png";
-import img4 from "../Images/testingImags/image4.png";
-import img5 from "../Images/testingImags/image5.png";
-import img6 from "../Images/testingImags/image6.png";
+import img2 from "../Images/testingImags/testRes.jpg";
+import img3 from "../Images/testingImags/shipImage.png";
+import img4 from "../Images/testingImags/planeImage.png";
+// import img5 from "../Images/testingImags/image5.png";
+// import img6 from "../Images/testingImags/image6.png";
 
 
 export const questions = [
@@ -31,116 +30,116 @@ export const questions = [
       },
     ],
   },
-   {
-     id: 2,
-     question: "What’s your priority in project planning?",
-      answer: "A",
-     options: [
-       {
-         label: "A",
-         text: "Vision",
-         category: "DisruptiveInnovator",
-       },
-       {
-         label: "B",
-         text: "Feasibility",
-         category: "RealWorlders",
-       },
-       {
-         label: "C",
-         text: "Execution",
-         category: "ImplementationSpecialists",
-       },
-     ],
-   },
-    {
-      id: 3,
-      question: "What drives your curiosity?",
-       answer: "A",
-      options: [
-        {
-          label: "A",
-          text: "Discovery",
-          category: "DisruptiveInnovator",
-        },
-        {
-          label: "B",
-          text: "Solutions",
-          category: "RealWorlders",
-        },
-        {
-          label: "C",
-          text: "Process",
-          category: "ImplementationSpecialists",
-        },
-      ],
-    },
-    {
-      id: 4,
-      question: "What’s your first step in problem-solving?",
-       answer: "A",
-      options: [
-        {
-          label: "A",
-          text: "Ideate",
-          category: "DisruptiveInnovator",
-        },
-        {
-          label: "B",
-          text: "Research",
-          category: "RealWorlders",
-        },
-        {
-          label: "C",
-          text: "Execute",
-          category: "ImplementationSpecialists",
-        },
-      ],
-    },
-    {
-      id: 5,
-      question: "What’s your role in team building?",
-       answer: "A",
-      options: [
-        {
-          label: "A",
-          text: "Visionary",
-          category: "DisruptiveInnovator",
-        },
-        {
-          label: "B",
-          text: "Supporter",
-          category: "RealWorlders",
-        },
-        {
-          label: "C",
-          text: "Coordinator",
-          category: "ImplementationSpecialists",
-        },
-      ],
-    },
-    {
-      id: 6,
-      question: "What’s your work environment preference?",
-       answer: "A",
-      options: [
-        {
-          label: "A",
-          text: "Dynamic",
-          category: "DisruptiveInnovator",
-        },
-        {
-          label: "B",
-          text: "Balanced",
-          category: "RealWorlders",
-        },
-        {
-          label: "C",
-          text: "Structured",
-          category: "ImplementationSpecialists",
-        },
-      ],
-    },
+  //  {
+  //    id: 2,
+  //    question: "What’s your priority in project planning?",
+  //     answer: "A",
+  //    options: [
+  //      {
+  //        label: "A",
+  //        text: "Vision",
+  //        category: "DisruptiveInnovator",
+  //      },
+  //      {
+  //        label: "B",
+  //        text: "Feasibility",
+  //        category: "RealWorlders",
+  //      },
+  //      {
+  //        label: "C",
+  //        text: "Execution",
+  //        category: "ImplementationSpecialists",
+  //      },
+  //    ],
+  //  },
+  // {
+  //   id: 3,
+  //   question: "What drives your curiosity?",
+  //    answer: "A",
+  //   options: [
+  //     {
+  //       label: "A",
+  //       text: "Discovery",
+  //       category: "DisruptiveInnovator",
+  //     },
+  //     {
+  //       label: "B",
+  //       text: "Solutions",
+  //       category: "RealWorlders",
+  //     },
+  //     {
+  //       label: "C",
+  //       text: "Process",
+  //       category: "ImplementationSpecialists",
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: 4,
+  //   question: "What’s your first step in problem-solving?",
+  //    answer: "A",
+  //   options: [
+  //     {
+  //       label: "A",
+  //       text: "Ideate",
+  //       category: "DisruptiveInnovator",
+  //     },
+  //     {
+  //       label: "B",
+  //       text: "Research",
+  //       category: "RealWorlders",
+  //     },
+  //     {
+  //       label: "C",
+  //       text: "Execute",
+  //       category: "ImplementationSpecialists",
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: 5,
+  //   question: "What’s your role in team building?",
+  //    answer: "A",
+  //   options: [
+  //     {
+  //       label: "A",
+  //       text: "Visionary",
+  //       category: "DisruptiveInnovator",
+  //     },
+  //     {
+  //       label: "B",
+  //       text: "Supporter",
+  //       category: "RealWorlders",
+  //     },
+  //     {
+  //       label: "C",
+  //       text: "Coordinator",
+  //       category: "ImplementationSpecialists",
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: 6,
+  //   question: "What’s your work environment preference?",
+  //    answer: "A",
+  //   options: [
+  //     {
+  //       label: "A",
+  //       text: "Dynamic",
+  //       category: "DisruptiveInnovator",
+  //     },
+  //     {
+  //       label: "B",
+  //       text: "Balanced",
+  //       category: "RealWorlders",
+  //     },
+  //     {
+  //       label: "C",
+  //       text: "Structured",
+  //       category: "ImplementationSpecialists",
+  //     },
+  //   ],
+  // },
   //  {
   //    id: 7,
   //    question: "How do you manage pressure?",
@@ -276,23 +275,23 @@ export const questions = [
     options: [
       {
         label: "A",
-       
-        image: img1, 
-        isImage: true, 
+
+        image: img1,
+        isImage: true,
         category: "DisruptiveInnovator",
       },
       {
         label: "B",
-       
-        image: img2, 
-        isImage: true, 
+
+        image: img2,
+        isImage: true,
         category: "RealWorlders",
       },
       {
         label: "C",
-     
+
         image: img3,
-        isImage: true, 
+        isImage: true,
         category: "ImplementationSpecialists",
       },
     ],
@@ -304,22 +303,28 @@ export const questions = [
     options: [
       {
         label: "A",
-       
-        image: img4, 
-        isImage: true, 
+
+        image: img4,
+        isImage: true,
         category: "DisruptiveInnovator",
       },
       {
         label: "B",
-        image: img5, 
-        isImage: true, 
+        image: img2,
+        isImage: true,
         category: "RealWorlders",
       },
       {
         label: "C",
-        image: testImage,
+        image: img1,
         isImage: true, // Indicates this option uses text only
         category: "ImplementationSpecialists",
+      },
+      {
+        label: "D",
+        image: img2,
+        isImage: true, // Indicates this option uses text only
+        category: "RealWorlders",
       },
     ],
   },

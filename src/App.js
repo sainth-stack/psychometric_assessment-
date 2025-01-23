@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ConditionsPage from "./pages/ConditionsPage";
 import QuizPage from "./pages/QuizPage/QuizPage";
-import PieGraphPage from "./pages/Graphs/PieGraphPage";
+import ResultPage from "./pages/Graphs/ResultPage";
 
 const App = () => {
   const [quizStarted, setQuizStarted] = useState(false);
@@ -31,7 +31,7 @@ const App = () => {
             )
           }
         />
-        <Route path="/result" element={<PieGraphPage />} />
+        <Route path="/result" element={<ResultPage />} />
       </Routes>
     </Router>
   );

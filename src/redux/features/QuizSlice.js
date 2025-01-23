@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   responses: {
-    DisruptiveInnovator: 0,
-    RealWorlders: 0,
     ImplementationSpecialists: 0,
+    RealWorlders: 0,
+    DisruptiveInnovator: 0,
   },
 };
 

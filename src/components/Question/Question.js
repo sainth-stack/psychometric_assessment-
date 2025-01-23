@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Box, Typography, Grid, Grid2 } from "@mui/material";
+import { Button, Box, Typography, Grid } from "@mui/material";
 import Timer from "../Timer/Timer";
 import { useNavigate } from "react-router-dom";
 import { questions } from "../../data/QuestionsData";
@@ -7,6 +7,7 @@ import { questions } from "../../data/QuestionsData";
 const Question = ({
   questionData,
   setIsQuizCompleted,
+  isQuizCompleted,
   currentQuestion,
   onOptionSelect,
   selectedAnswer, // New prop to track the selected answer
@@ -19,53 +20,63 @@ const Question = ({
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ display: "flex", marginBottom: "0rem" }}>
+    <Box
+      sx={{
+        width: "100%",
+        padding: { xs: ".5rem", md: "1rem" },
+      }}
+    >
+      <Box
+        sx={{ display: "flex", justifyContent: "space-between", mb: {xs:"0",sm:"1"} }}
+      >
         <Timer
-          onTimeUp={handleTimeUp}
           setIsQuizCompleted={setIsQuizCompleted}
+          onTimeUp={handleTimeUp}
+          isQuizCompleted={isQuizCompleted}
         />
       </Box>
 
-      <Grid2 display={"flex"} flexDirection={"column"} padding={"1.5rem"}> 
-        <Box sx={{ display: "flex", marginBottom: ".2rem" }}>
-          <Typography component={"span"}>
-            Question {currentQuestion} / {questions.length}
-          </Typography>
-        </Box>
+      <Box sx={{ padding: { xs: ".5rem", md: "1.5rem" } }}>
         <Typography
-          component={"span"}
-          style={{
-            textAlign: "left",
-            fontSize: "1.2rem",
+          sx={{
+            fontSize: { xs: "1rem", md: "1.2rem" },
             fontWeight: "600",
-            marginBottom: "2rem !important",
+            mb: {xs:".5rem", sm:"1rem"},
+            textAlign: "left",
+          }}
+        >
+          Question {currentQuestion} / {questions.length}
+        </Typography>
+
+        <Typography
+          sx={{
+            fontSize: { xs: "1rem", md: "1.5rem" },
+            fontWeight: "bold",
+            mb: {xs:"1rem", sm:"1.5rem"},
           }}
         >
           {questionData?.question}
         </Typography>
+
         <Grid
           container
           spacing={2}
           sx={{
-            justifyContent: "start",
-            textAlign: "center",
-            marginTop: "1.5rem",
+            justifyContent: { xs: "center", md: "flex-start" },
           }}
         >
           {questionData?.options?.map((option, index) => (
             <Grid
               item
-              xs={option.isImage ? 12 : 6}
-              sm={option.isImage ? 12 : 6}
+              xs={option.isImage ? 6 : 12} // 2 images per row on small devices
+              sm={option.isImage ? 3 : 6}
               md={option.isImage ? 3 : 6}
               key={index}
-              style={option.isImage ? {} : { margin: ".3rem 0" }}
             >
               <Button
                 fullWidth
                 sx={{
-                  padding: "8px 20px",
+                  padding: "10px",
                   textTransform: "none",
                   color: "#000",
                   border:
@@ -79,22 +90,29 @@ const Question = ({
                     !(option.isImage && option.image)
                       ? "#EBBE2D"
                       : "#fff",
+                  borderRadius: ".5rem",
                 }}
-                onClick={() => onOptionSelect(option)} // Pass the option object to handleOptionSelect
+                onClick={() => onOptionSelect(option)}
               >
                 {option.isImage && option.image ? (
                   <img
                     src={option.image}
                     alt={option.option}
+                    loading="lazy"
                     style={{
-                      width: "100px",
-                      height: "70px",
-                      borderRadius: ".2rem",
+                      width: "100%",
+                      maxHeight: "150px",
+                      borderRadius: ".5rem",
                       objectFit: "contain",
                     }}
                   />
                 ) : (
-                  <Typography component="span">
+                  <Typography
+                    sx={{
+                      fontSize: { xs: "0.9rem", md: "1rem" },
+                      textAlign: "center",
+                    }}
+                  >
                     {option.label}. {option.text}
                   </Typography>
                 )}
@@ -102,7 +120,7 @@ const Question = ({
             </Grid>
           ))}
         </Grid>
-      </Grid2>
+      </Box>
     </Box>
   );
 };

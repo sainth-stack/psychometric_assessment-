@@ -1,0 +1,76 @@
+/* For devices smaller than 600px (typically mobile devices) */
+@media (max-width: 600px) {
+ .result_heading{
+    text-align: center;
+ }
+.mobile_percentages, .percentage_value{
+  display: flex;
+  flex-direction: column;
+  /* background: #f5f5f5; */
+  justify-content: center;
+  align-items: center;
+}
+
+
+.mobile_percentage .percentage_value span {
+  margin-bottom: 0; 
+  line-height: 1.5;  
+}
+
+.mobile_percentage .percentage_value {
+  display: inline-block;
+  text-align: center;
+}
+
+
+
+}
+
+/* For devices between 600px and 960px (typically tablets) */
+@media (min-width: 600px) and (max-width: 1024px) {
+  /* Tablet styles */
+  .result_heading{
+    text-align: center;
+    margin-top:8rem !important;
+    font-size: 2.5rem !important;
+ }
+
+
+ .tablet_percentages, .percentage_value{
+  display: flex;
+  flex-direction: column;
+ 
+  justify-content: center;
+  align-items: center;
+}
+
+/* For reducing the gap between percentage and label */
+.tablet_percentage .percentage_value span {
+  margin-bottom: 0;  
+  /* font-size: 1.5rem !important; */
+  line-height: 1.5 !important;  
+}
+
+.tablet_percentage .percentage_value {
+  display: inline-block;
+  text-align: center;
+}
+.tablet_no_data_found{
+   
+    width: 100% !important;
+}
+
+
+
+
+}
+
+/* For devices between 960px and 1280px (larger tablets or small laptops) */
+@media (min-width: 960px) and (max-width: 1280px) {
+  /* Medium-sized screens */
+}
+
+/* For devices larger than 1280px (typically desktops or larger laptops) */
+@media (min-width: 1280px) {
+  /* Desktop and larger screen styles */
+}

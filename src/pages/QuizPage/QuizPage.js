@@ -9,6 +9,7 @@ import {
   resetQuiz,
 } from "../../redux/features/QuizSlice";
 import { useNavigate } from "react-router-dom";
+import CustomSubmitButton from "../../components/Button/CustomSubmitBtn";
 
 const QuizPage = ({ onFinish }) => {
   const dispatch = useDispatch();
@@ -77,6 +78,13 @@ const QuizPage = ({ onFinish }) => {
     }
   };
 
+
+  useEffect(() => {
+    if (isQuizCompleted) {
+      navigate("/result"); // Redirect to the result page
+    }
+  }, [isQuizCompleted, navigate]);
+
   // Handle back question navigation
   const handleBack = () => {
     if (currentQuestion > 0) {
@@ -89,28 +97,33 @@ const QuizPage = ({ onFinish }) => {
     <Box
       sx={{
         display: "flex",
-        justifyContent: "center",
+        height: "100vh",
+        flexDirection: "column",
         alignItems: "center",
-        marginTop: "2rem",
+        justifyContent: "center",
+        padding: { xs:0, sm: 2 },
       }}
     >
       {isQuizCompleted ? (
         // Quiz completion view
-        <></>
+        <>Compeleted</>
       ) : (
         // Quiz question view
         <Box
           sx={{
-            background: "#fff",
             display: "flex",
+            background: "#fff",
             borderRadius: ".5rem",
             flexDirection: "column",
             alignItems: "center",
-            width: "60%",
+            width: { xs: "100%", sm: "100%", md: "60%" }, // Responsive width
+            minHeight: "60vh",
+            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", // Add slight shadow
           }}
         >
           {/* Question Component */}
           <Question
+            isQuizCompleted={isQuizCompleted}
             setIsQuizCompleted={setIsQuizCompleted}
             questionData={currentQuestions[currentQuestion]}
             currentQuestion={currentQuestion + 1}
@@ -125,7 +138,7 @@ const QuizPage = ({ onFinish }) => {
               width: "100%",
               alignItems: "flex-end",
               marginTop: 1,
-              padding: "1rem",
+              padding: { xs: "0.5rem", sm: "1rem" },
             }}
           >
             <Button
@@ -149,26 +162,21 @@ const QuizPage = ({ onFinish }) => {
             >
               Back
             </Button>
-            <Button
-              variant="contained"
-              sx={{
-                margin: 2,
-                width: "150px",
-                background: "#847F3B",
-                fontFamily: "inherit",
-              }}
+            <CustomSubmitButton
               onClick={handleNext}
               disabled={!answers[currentQuestion]}
             >
-              {currentQuestion === currentQuestions.length - 1 ? "Submit" : "Next"}
-            </Button>
+              {currentQuestion === currentQuestions.length - 1
+                ? "Submit"
+                : "Next"}
+            </CustomSubmitButton>
           </Box>
 
           <Box sx={{ width: "100%" }}>
             <Typography
               sx={{
                 marginTop: 4,
-                padding: "0rem 0rem 1rem 1rem",
+                padding: { xs: "0.5rem", sm: "1rem" },
                 textAlign: "left",
                 textDecoration: "none",
                 margin: "0px",

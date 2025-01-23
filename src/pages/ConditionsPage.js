@@ -25,6 +25,7 @@ const ConditionsPage = ({ onStart }) => {
         justifyContent: "center",
         alignItems: "center",
         minHeight: "100vh",
+        padding: { xs: "0px", sm: "20px", md: "0px" },
       }}
     >
       <Box
@@ -33,7 +34,7 @@ const ConditionsPage = ({ onStart }) => {
           background: "#fff",
           borderRadius: ".5rem",
           padding: 2,
-          width: "60%",
+          width: { xs: "90%", sm: "80%", md: "60%" },
         }}
       >
         {/* Header with logo and title */}
@@ -42,12 +43,15 @@ const ConditionsPage = ({ onStart }) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            padding: 2,
+            padding: { xs: 1, sm: 2 },
+            flexDirection: { xs: "column", sm: "row" },
           }}
         >
-          <Box sx={{ marginRight: -10 }}>
+          <Box
+            sx={{ marginBottom: { xs: 2, sm: 0 }, marginRight: { sm: -10 } }}
+          >
             <img
-               src={logo} // Replace with your logo URL
+              src={logo} // Replace with your logo URL
               alt="Company Logo"
               style={{ height: "70px" }}
             />
@@ -110,7 +114,6 @@ const ConditionsPage = ({ onStart }) => {
               I accept all terms & conditions
             </label>
           </Box>
-
           {/* Start Button */}
           <Box
             sx={{
@@ -125,11 +128,12 @@ const ConditionsPage = ({ onStart }) => {
               disabled={!checked}
               sx={{
                 background: "#847F3B",
+                width: { xs: "100%", sm: "auto" },
                 color: "#FFFFFF",
                 "&:hover": {
                   background: "#6E6B30",
                 },
-               
+                padding: { xs: "12px 20px", sm: "8px 20px" },
               }}
             >
               Start Quiz

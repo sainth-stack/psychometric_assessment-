@@ -2,16 +2,17 @@ import React from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const NoDataFound = () => {
-
-    const navigate = useNavigate(); 
+const NoDataFound = ({ setShowFinish }) => {
+  const navigate = useNavigate();
 
   const handleBackToQuiz = () => {
-    navigate("/"); 
+
+    navigate("/");
   };
 
   return (
     <Box
+      className="tablet_no_data_found"
       display="flex"
       flexDirection="column"
       justifyContent="center"
@@ -22,6 +23,7 @@ const NoDataFound = () => {
         borderRadius: 2,
         // padding: 3,
         textAlign: "center",
+        minHeight: "60vh",
       }}
     >
       <svg
@@ -53,7 +55,7 @@ const NoDataFound = () => {
 
       <Button
         variant="contained"
-        sx={{  margin:1,width: "160px" }}
+        sx={{ margin: 1, width: "160px" }}
         onClick={handleBackToQuiz}
       >
         Back To Quiz !
