@@ -22,11 +22,11 @@ ChartJS.register(
   LinearScale
 );
 
-const DoughnutChart = ({ labels, data, colors }) => {
+const DoughnutChart = ({ labels, data,colors }) => {
+  // const colors = ["#85823F", "#DA5931", "#EBBE2D"]; // Customizable colors
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // Mobile devices
-  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md")); // Tablet
-
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const chartRef = useRef(null);
 
   const total = data.reduce((sum, value) => sum + value, 0);
@@ -50,12 +50,8 @@ const DoughnutChart = ({ labels, data, colors }) => {
   const options = {
     responsive: true,
     plugins: {
-      title: {
-        display: false,
-      },
-      legend: {
-        display: false,
-      },
+      title: { display: false },
+      legend: { display: false },
     },
     cutout: "60%",
   };
@@ -65,18 +61,13 @@ const DoughnutChart = ({ labels, data, colors }) => {
   const calculateLabelPositions = () => {
     const chart = chartRef.current;
     if (!chart || !chart.chartArea) return [];
-    const meta = chart.getDatasetMeta(0); // Get the first dataset meta
+    const meta = chart.getDatasetMeta(0); 
     if (!meta || !meta.data) return [];
 
     return meta.data.map((arc, index) => {
       if (data[index] === 0) return null; // Skip arcs with zero data
-
       const position = arc.tooltipPosition(); // Tooltip position gives x and y
-      return {
-        x: position.x,
-        y: position.y,
-        value: `${percentages[index]}%`,
-      };
+      return { x: position.x, y: position.y, value: `${percentages[index]}%` };
     });
   };
 
@@ -86,27 +77,24 @@ const DoughnutChart = ({ labels, data, colors }) => {
     if (!isDataEmpty) {
       const timeout = setTimeout(
         () => setLabelPositions(calculateLabelPositions()),
-        100
-      );
+        500
+      ); // Wait for chart render
       return () => clearTimeout(timeout); // Cleanup
     }
   }, [data]);
-  
+
   return isDataEmpty ? (
-    <>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          padding: { xs: "0rem", sm: "2rem", md: "3rem" }, // Responsive padding
-        }}
-        className=""
-      >
-        <NoDataFound />
-      </Box>
-    </>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        padding: { xs: "0rem", sm: "2rem", md: "3rem" },
+      }}
+    >
+      <NoDataFound />
+    </Box>
   ) : (
     <Box
       sx={{
@@ -119,38 +107,36 @@ const DoughnutChart = ({ labels, data, colors }) => {
       }}
     >
       <Doughnut ref={chartRef} data={chartData} options={options} />
-      {labelPositions.map(
-        (pos, index) =>
-          pos && (
-            <Typography
-              key={index}
-              sx={{
-                position: "absolute",
-                top: isMobile
-                  ? `${pos.y + 10}px`
-                  : isTablet
-                  ? `${pos.y + 20}px`
-                  : `${pos.y}px`,
-                left: isMobile
-                  ? `${pos.x}px`
-                  : isTablet
-                  ? `${pos.x + 150}px`
-                  : `${pos.x + 30}px`,
-                transform: "translate(-50%, -50%)",
-                backgroundColor: "#E9EAEDBF",
-                boxShadow: theme.shadows[3],
-                borderRadius: "8px",
-                padding: isMobile ? ".3rem" : ".5rem",
-                textAlign: "center",
-                fontSize: isMobile ? "0.8rem" : isTablet ? "0.9rem" : "1rem",
-                fontWeight: "900",
-                color: theme.palette.text.primary,
-              }}
-            >
-              {pos.value}
-            </Typography>
-          )
-      )}
+      {labelPositions.map((pos, index) => {
+        if (!pos) return null;
+
+        const angle = index / labelPositions.length;
+        const radius = isMobile ? 60 : isTablet ? 100 : 140;
+        let adjustedX = pos.x+2 + radius * Math.cos(angle+0.5);
+        let adjustedY = pos.y+1 + radius * Math.sin(angle-0.2);
+
+        return (
+          <Typography
+            key={index}
+            sx={{
+              position: "absolute",
+              top: `${adjustedY}px`,
+              left: `${adjustedX}px`,
+              transform: "translate(-50%, -50%)",
+              backgroundColor: "#E9EAEDBF",
+              boxShadow: theme.shadows[3],
+              borderRadius: "8px",
+              padding: isMobile ? ".3rem" : isTablet ? ".4rem" : ".5rem",
+              textAlign: "center",
+              fontSize: isMobile ? "0.8rem" : isTablet ? "0.9rem" : "1rem",
+              fontWeight: "900",
+              color: theme.palette.text.primary,
+            }}
+          >
+            {pos.value}
+          </Typography>
+        );
+      })}
     </Box>
   );
 };
