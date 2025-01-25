@@ -1,1 +1,1 @@
-export  const ENDPOINT = "http://localhost:4000";
+export  const ENDPOINT = "https://test.talentspotifyapp.com";
