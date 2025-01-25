@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
-import { Backdrop, Box, CircularProgress, Paper, Typography } from "@mui/material";
+import {
+  Backdrop,
+  Box,
+  CircularProgress,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { REACT_APP_GOOGLE_CLIENT_ID } from "../../utils/GoogleLogin";
 import { ENDPOINT } from "../../utils/EndPoint";
@@ -23,7 +29,7 @@ const GoogleLoginComponent = ({ onLogin }) => {
 
       console.log("User details saved:", response.data);
       setLoading(false);
-toast.success("Login successful!");
+      toast.success("Login successful!");
       if (onLogin) onLogin(response.data);
       navigate("/"); // Redirect to ConditionsPage
     } catch (error) {
@@ -31,7 +37,7 @@ toast.success("Login successful!");
         "Error during Google login:",
         error.response?.data || error.message
       );
-      
+
       toast.error("Login failed. Please try again.");
     } finally {
       setLoading(false); // Hide loading indicator

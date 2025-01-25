@@ -96,177 +96,177 @@ export const questions = [
       },
     ],
   },
-  // {
-  //   id: 5,
-  //   question: "What’s your role in team building?",
-  //    answer: "A",
-  //   options: [
-  //     {
-  //       label: "A",
-  //       text: "Visionary",
-  //       category: "DisruptiveInnovator",
-  //     },
-  //     {
-  //       label: "B",
-  //       text: "Supporter",
-  //       category: "RealWorlders",
-  //     },
-  //     {
-  //       label: "C",
-  //       text: "Coordinator",
-  //       category: "ImplementationSpecialists",
-  //     },
-  //   ],
-  // },
-  // {
-  //   id: 6,
-  //   question: "What’s your work environment preference?",
-  //    answer: "A",
-  //   options: [
-  //     {
-  //       label: "A",
-  //       text: "Dynamic",
-  //       category: "DisruptiveInnovator",
-  //     },
-  //     {
-  //       label: "B",
-  //       text: "Balanced",
-  //       category: "RealWorlders",
-  //     },
-  //     {
-  //       label: "C",
-  //       text: "Structured",
-  //       category: "ImplementationSpecialists",
-  //     },
-  //   ],
-  // },
-  //  {
-  //    id: 7,
-  //    question: "How do you manage pressure?",
-  //     answer: "A",
-  //    options: [
-  //      {
-  //        label: "A",
-  //        text: "Adapt",
-  //        category: "DisruptiveInnovator",
-  //      },
-  //      {
-  //        label: "B",
-  //        text: "Focus",
-  //        category: "RealWorlders",
-  //      },
-  //      {
-  //        label: "C",
-  //        text: "Prepare",
-  //        category: "ImplementationSpecialists",
-  //      },
-  //    ],
-  //  },
-  //  {
-  //    id: 8,
-  //    question: "How do you assess risks?",
-  //     answer: "A",
-  //    options: [
-  //      {
-  //        label: "A",
-  //        text: "Embrace",
-  //        category: "DisruptiveInnovator",
-  //      },
-  //      {
-  //        label: "B",
-  //        text: "Evaluate",
-  //        category: "RealWorlders",
-  //      },
-  //      {
-  //        label: "C",
-  //        text: "Mitigate",
-  //        category: "ImplementationSpecialists",
-  //      },
-  //    ],
-  //  },
-  //  {
-  //    id: 9,
-  //    question: "What’s your preferred decision tool?",
-  //     answer: "A",
-  //    options: [
-  //      {
-  //        label: "A",
-  // //       text: "Insight",
-  //        category: "DisruptiveInnovator",
-  //      },
-  //      {
-  //        label: "B",
-  //        text: "Data",
-  //        category: "RealWorlders",
-  //      },
-  //      {
-  //        label: "C",
-  //        text: "Process",
-  //        category: "ImplementationSpecialists",
-  //      },
-  //    ],
-  //  },
-  //  {
-  //    id: 10,
-  //    question: "What’s your communication style?",
-  //     answer: "A",
-  //    options: [
-  //      {
-  //        label: "A",
-  //        text: "Persuasive",
-  //        category: "DisruptiveInnovator",
-  //      },
-  //      {
-  //        label: "B",
-  //        text: "Clear",
-  //        category: "RealWorlders",
-  //      },
-  //      {
-  //        label: "C",
-  //        text: "Direct",
-  //        category: "ImplementationSpecialists",
-  //      },
-  //    ],
-  //  },
-  //  {
-  //    id: 11,
-  //    question: "How do you allocate time?",
-  //     answer: "A",
-  //    options: [
-  //      {
-  //        label: "A",
-  //        text: "Strategically",
-  //        category: "DisruptiveInnovator",
-  //      },
-  //      {
-  //        label: "B",
-  //        text: "Practically",
-  //        category: "RealWorlders",
-  //      },
-  //      {
-  //        label: "C",
-  //        text: "Precisely",
-  //        category: "ImplementationSpecialists",
-  //      },
-  //    ],
-  //  },
-  //  {
-  //    id: 12,
-  //    question: "How do you mostly do things?",
-  //     answer: "B",
-  //    options: [
-  //      {
-  //        label: "A",
-  //        text: "The way that they're usually done",
-  //        category: "ImplementationSpecialists",
-  //      },
-  //      {
-  //        label: "B",
-  //        text: "Your own way",
-  //       category: "DisruptiveInnovator",
-  //      },
-  //    ],
-  //  },
+  {
+    id: 5,
+    question: "What’s your role in team building?",
+     answer: "A",
+    options: [
+      {
+        label: "A",
+        text: "Visionary",
+        category: "DisruptiveInnovator",
+      },
+      {
+        label: "B",
+        text: "Supporter",
+        category: "RealWorlders",
+      },
+      {
+        label: "C",
+        text: "Coordinator",
+        category: "ImplementationSpecialists",
+      },
+    ],
+  },
+  {
+    id: 6,
+    question: "What’s your work environment preference?",
+     answer: "A",
+    options: [
+      {
+        label: "A",
+        text: "Dynamic",
+        category: "DisruptiveInnovator",
+      },
+      {
+        label: "B",
+        text: "Balanced",
+        category: "RealWorlders",
+      },
+      {
+        label: "C",
+        text: "Structured",
+        category: "ImplementationSpecialists",
+      },
+    ],
+  },
+   {
+     id: 7,
+     question: "How do you manage pressure?",
+      answer: "A",
+     options: [
+       {
+         label: "A",
+         text: "Adapt",
+         category: "DisruptiveInnovator",
+       },
+       {
+         label: "B",
+         text: "Focus",
+         category: "RealWorlders",
+       },
+       {
+         label: "C",
+         text: "Prepare",
+         category: "ImplementationSpecialists",
+       },
+     ],
+   },
+   {
+     id: 8,
+     question: "How do you assess risks?",
+      answer: "A",
+     options: [
+       {
+         label: "A",
+         text: "Embrace",
+         category: "DisruptiveInnovator",
+       },
+       {
+         label: "B",
+         text: "Evaluate",
+         category: "RealWorlders",
+       },
+       {
+         label: "C",
+         text: "Mitigate",
+         category: "ImplementationSpecialists",
+       },
+     ],
+   },
+   {
+     id: 9,
+     question: "What’s your preferred decision tool?",
+      answer: "A",
+     options: [
+       {
+         label: "A",
+  //       text: "Insight",
+         category: "DisruptiveInnovator",
+       },
+       {
+         label: "B",
+         text: "Data",
+         category: "RealWorlders",
+       },
+       {
+         label: "C",
+         text: "Process",
+         category: "ImplementationSpecialists",
+       },
+     ],
+   },
+   {
+     id: 10,
+     question: "What’s your communication style?",
+      answer: "A",
+     options: [
+       {
+         label: "A",
+         text: "Persuasive",
+         category: "DisruptiveInnovator",
+       },
+       {
+         label: "B",
+         text: "Clear",
+         category: "RealWorlders",
+       },
+       {
+         label: "C",
+         text: "Direct",
+         category: "ImplementationSpecialists",
+       },
+     ],
+   },
+   {
+     id: 11,
+     question: "How do you allocate time?",
+      answer: "A",
+     options: [
+       {
+         label: "A",
+         text: "Strategically",
+         category: "DisruptiveInnovator",
+       },
+       {
+         label: "B",
+         text: "Practically",
+         category: "RealWorlders",
+       },
+       {
+         label: "C",
+         text: "Precisely",
+         category: "ImplementationSpecialists",
+       },
+     ],
+   },
+   {
+     id: 12,
+     question: "How do you mostly do things?",
+      answer: "B",
+     options: [
+       {
+         label: "A",
+         text: "The way that they're usually done",
+         category: "ImplementationSpecialists",
+       },
+       {
+         label: "B",
+         text: "Your own way",
+        category: "DisruptiveInnovator",
+       },
+     ],
+   },
 
   {
     id: 13,
