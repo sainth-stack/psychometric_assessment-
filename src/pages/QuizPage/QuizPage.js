@@ -10,18 +10,20 @@ import {
 } from "../../redux/features/QuizSlice";
 import { useNavigate } from "react-router-dom";
 import CustomSubmitButton from "../../components/Button/CustomSubmitBtn";
+import axios from "axios";
+import { ENDPOINT } from "../../utils/EndPoint";
 
 const QuizPage = ({ onFinish }) => {
   const dispatch = useDispatch();
   const [currentQuestions, setCurrentQuestions] = useState([]);
   const responses = useSelector((state) => state?.quizCategories?.responses);
   const navigate = useNavigate();
-  console.log("responses", responses);
+  // console.log("responses", responses);
 
   useLayoutEffect(() => {
-    console.log('heeyy')
+    // console.log('heeyy')
     const shuffleArray = (array) => {
-      console.log('heeyyds')
+      // console.log('heeyyds')
 
       const shuffled = [...array]; // Create a copy to avoid mutating the original array
       for (let i = shuffled.length - 1; i > 0; i--) {
@@ -30,7 +32,7 @@ const QuizPage = ({ onFinish }) => {
       }
       return shuffled;
     };
-    console.log(shuffleArray(questions))
+    // console.log(shuffleArray(questions))
     setCurrentQuestions(shuffleArray(questions));
   }, []);
 
@@ -40,7 +42,7 @@ const QuizPage = ({ onFinish }) => {
   const [showWarning, setShowWarning] = useState(false);
 
   const handleOptionSelect = (selectedOption) => {
-    console.log("options checkinf", selectedOption);
+    // console.log("options checkinf", selectedOption);
     if (answers[currentQuestion] !== selectedOption?.label) {
       const updatedAnswers = [...answers];
       const previousAnswer = updatedAnswers[currentQuestion];
@@ -93,6 +95,26 @@ const QuizPage = ({ onFinish }) => {
     setShowWarning(false);
   };
 
+
+  /* api call for storing results */
+  const handleSubmitResults = async () => {
+    console.log("     responses: answers, ", responses);
+      const userEmail = localStorage.getItem("userEmail");
+      const resultData = {
+        email: userEmail,
+      results: responses,
+      };
+
+      try {
+        await axios.post(`${ENDPOINT}/api/users/save-results`, resultData);
+        navigate("/result");
+      } catch (error) {
+        console.error("Error submitting results:", error);
+      }
+  };
+
+
+
   return (
     <Box
       sx={{
@@ -101,7 +123,7 @@ const QuizPage = ({ onFinish }) => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: { xs:0, sm: 2 },
+        padding: { xs: 0, sm: 2 },
       }}
     >
       {isQuizCompleted ? (
@@ -162,14 +184,18 @@ const QuizPage = ({ onFinish }) => {
             >
               Back
             </Button>
-            <CustomSubmitButton
-              onClick={handleNext}
-              disabled={!answers[currentQuestion]}
-            >
-              {currentQuestion === currentQuestions.length - 1
-                ? "Submit"
-                : "Next"}
-            </CustomSubmitButton>
+            {currentQuestion === currentQuestions.length - 1 ? (
+              <CustomSubmitButton onClick={handleSubmitResults}>
+                Submit
+              </CustomSubmitButton>
+            ) : (
+              <CustomSubmitButton
+                onClick={handleNext}
+                disabled={!answers[currentQuestion]}
+              >
+                Next
+              </CustomSubmitButton>
+            )}
           </Box>
 
           <Box sx={{ width: "100%" }}>

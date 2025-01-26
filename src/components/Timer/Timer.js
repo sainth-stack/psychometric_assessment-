@@ -78,11 +78,11 @@ const Timer = ({
         </Typography>
       </Box>
 
-      <Box>
+      {/* <Box>
         <CustomSubmitButton onClick={() => setIsQuizCompleted(true)}>
           Submit
         </CustomSubmitButton>
-      </Box>
+      </Box> */}
     </Box>
   );
 };

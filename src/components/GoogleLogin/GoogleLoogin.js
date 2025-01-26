@@ -27,6 +27,13 @@ const GoogleLoginComponent = ({ onLogin }) => {
         token: credential,
       });
 
+            const userEmail = response?.data?.user?.email;  
+        // Store the email in localStorage
+        if (userEmail) {
+          localStorage.setItem("userEmail", userEmail);
+      }
+      
+
       console.log("User details saved:", response.data);
       setLoading(false);
       toast.success("Login successful!");
@@ -87,10 +94,22 @@ const GoogleLoginComponent = ({ onLogin }) => {
           <Typography variant="body1" sx={{ marginBottom: 3 }}>
             Sign in with your Google account to continue.
           </Typography>
-          <GoogleLogin
-            onSuccess={handleGoogleSuccess}
-            onError={handleGoogleFailure}
-          />
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              p: { xs: 2, md: 0 },
+              transition: "transform 0.2s, background-color 0.2s",
+             
+            }}
+          >
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={handleGoogleFailure}
+            />
+          </Box>
+
           <Typography
             variant="caption"
             sx={{ display: "block", marginTop: 3, color: "#888" }}

@@ -23,7 +23,22 @@ const ResultPage = ({ showFinish }) => {
 
 
   console.log("fisish state test", showFinish);
-const navigate = useNavigate();
+
+  
+  
+  const navigate = useNavigate();
+  
+
+  const handleLogout = () => {
+    // Get the user's email from localStorage
+    const userEmail = localStorage.getItem("userEmail");
+    console.log("User email:", userEmail);
+    localStorage.removeItem("userEmail");
+    window.close();
+    navigate("/login")
+  };
+
+
   return (
     <Box
       display="flex"
@@ -53,7 +68,7 @@ const navigate = useNavigate();
                 fontWeight: "bold",
                 fontSize: { xs: "1.6rem", md: "2.5rem" }, // Responsive font size
                 marginBottom: { xs: "1rem", sm: "2rem" },
-                 marginLeft: { xs: "", md: "5rem" },
+                marginLeft: { xs: "", md: "5rem" },
                 marginTop: { xs: "15rem", sm: "-10rem" },
               }}
             >
@@ -116,7 +131,7 @@ const navigate = useNavigate();
             </Box>
 
             <Box style={{ display: "flex", justifyContent: "flex-end" }}>
-              <CustomSubmitButton onClick={() => navigate("/")}>
+              <CustomSubmitButton onClick={handleLogout}>
                 Finish
               </CustomSubmitButton>
             </Box>
