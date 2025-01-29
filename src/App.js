@@ -18,7 +18,7 @@ const App = () => {
   const startQuiz = () => setQuizStarted(true);
 
   const finishQuiz = () => {
-    toast.error("Time's up or quiz completed!");
+    toast.error("Time's up or Test completed!");
     setQuizStarted(false);
   };
 

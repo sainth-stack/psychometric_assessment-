@@ -41,29 +41,50 @@ const QuizPage = ({ onFinish }) => {
   const [answers, setAnswers] = useState([]);
   const [showWarning, setShowWarning] = useState(false);
 
-  const handleOptionSelect = (selectedOption) => {
-    // console.log("options checkinf", selectedOption);
-    if (answers[currentQuestion] !== selectedOption?.label) {
-      const updatedAnswers = [...answers];
-      const previousAnswer = updatedAnswers[currentQuestion];
+const handleOptionSelect = (selectedOption) => {
+  console.log("options checking", selectedOption.category);
 
-      if (previousAnswer) {
-        const previousSelectedOption = currentQuestions[currentQuestion].options.find(
-          (option) => option.label === previousAnswer
+  if (answers[currentQuestion] !== selectedOption?.label) {
+    const updatedAnswers = [...answers];
+    const previousAnswer = updatedAnswers[currentQuestion];
+
+    let previousCategories = [];
+
+    if (previousAnswer) {
+      const previousSelectedOption = currentQuestions[
+        currentQuestion
+      ].options.find((option) => option.label === previousAnswer);
+
+      if (previousSelectedOption) {
+        previousCategories = previousSelectedOption.category.flatMap((cat) =>
+          cat.split(",")
         );
-        if (previousSelectedOption) {
-          dispatch(
-            decrementCategory({ category: previousSelectedOption.category })
-          );
-        }
       }
-
-      updatedAnswers[currentQuestion] = selectedOption.label;
-      setAnswers(updatedAnswers);
-      setShowWarning(false);
-      dispatch(incrementCategory({ category: selectedOption.category }));
     }
-  };
+
+    updatedAnswers[currentQuestion] = selectedOption.label;
+    setAnswers(updatedAnswers);
+    setShowWarning(false);
+
+    previousCategories.forEach((cat) => {
+      if (!selectedOption.category.includes(cat)) {
+        dispatch(decrementCategory({ category: cat.trim() }));
+      }
+    });
+
+    // Find categories that are newly selected and increment only those
+    selectedOption.category
+      .flatMap((cat) => cat.split(","))
+      .forEach((cat) => {
+        if (!previousCategories.includes(cat.trim())) {
+          dispatch(incrementCategory({ category: cat.trim() })); // Corrected here
+        }
+      });
+  }
+};
+
+
+
 
   // Handle next question navigation
   const handleNext = () => {
@@ -76,18 +97,16 @@ const QuizPage = ({ onFinish }) => {
     } else {
       setIsQuizCompleted(true);
       navigate("/result");
-      // Mark quiz as completed
     }
   };
 
 
   useEffect(() => {
     if (isQuizCompleted) {
-      navigate("/result"); // Redirect to the result page
+      navigate("/result");
     }
   }, [isQuizCompleted, navigate]);
 
-  // Handle back question navigation
   const handleBack = () => {
     if (currentQuestion > 0) {
       setCurrentQuestion((prev) => prev - 1);

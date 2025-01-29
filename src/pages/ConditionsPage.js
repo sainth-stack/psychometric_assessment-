@@ -15,7 +15,7 @@ const ConditionsPage = ({ onStart }) => {
       onStart();
       navigate("/quiz")
     } else {
-      toast.info("Please accept the conditions to start the quiz.");
+      toast.info("Please accept the conditions to start the Test.");
     }
   };
 
@@ -137,7 +137,7 @@ const ConditionsPage = ({ onStart }) => {
                 padding: { xs: "12px 20px", sm: "8px 20px" },
               }}
             >
-              Start Quiz
+              Start Test
             </Button>
           </Box>
         </Box>

@@ -14,16 +14,31 @@ const quizSlice = createSlice({
   reducers: {
     incrementCategory: (state, action) => {
       const { category } = action.payload;
-      state.responses[category] += 1;
+      const categories = Array.isArray(category) ? category : [category];
+
+      categories.forEach((cat) => {
+        const trimmedCat = cat.trim(); // Trim spaces if any
+        if (state.responses[trimmedCat] !== undefined) {
+          state.responses[trimmedCat] += 1;
+        }
+      });
     },
     decrementCategory: (state, action) => {
       const { category } = action.payload;
-      if (state.responses[category] > 0) {
-        state.responses[category] -= 1; // Decrement only if the value is greater than 0
-      }
+      const categories = Array.isArray(category) ? category : [category];
+
+      categories.forEach((cat) => {
+        const trimmedCat = cat.trim();
+        if (
+          state.responses[trimmedCat] !== undefined &&
+          state.responses[trimmedCat] > 0
+        ) {
+          state.responses[trimmedCat] -= 1;
+        }
+      });
     },
     resetQuiz: (state) => {
-      state.responses = initialState.responses;
+      state.responses = { ...initialState.responses };
     },
   },
 });

@@ -58,7 +58,7 @@ const NoDataFound = ({ setShowFinish }) => {
         sx={{ margin: 1, width: "160px" }}
         onClick={handleBackToQuiz}
       >
-        Back To Quiz !
+        Back To Test !
       </Button>
     </Box>
   );

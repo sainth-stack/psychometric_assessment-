@@ -28,7 +28,11 @@ const Question = ({
       }}
     >
       <Box
-        sx={{ display: "flex", justifyContent: "space-between", mb: {xs:"0",sm:"1"} }}
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          mb: { xs: "0", sm: "1" },
+        }}
       >
         <Timer
           setIsQuizCompleted={setIsQuizCompleted}
@@ -42,7 +46,7 @@ const Question = ({
           sx={{
             fontSize: { xs: "1rem", md: "1.2rem" },
             fontWeight: "600",
-            mb: {xs:".5rem", sm:"1rem"},
+            mb: { xs: ".5rem", sm: "1rem" },
             textAlign: "left",
           }}
         >
@@ -53,7 +57,7 @@ const Question = ({
           sx={{
             fontSize: { xs: "1rem", md: "1.5rem" },
             fontWeight: "bold",
-            mb: {xs:"1rem", sm:"1.5rem"},
+            mb: { xs: "1rem", sm: "1.5rem" },
           }}
         >
           {questionData?.question}
@@ -102,9 +106,12 @@ const Question = ({
                     loading="lazy"
                     style={{
                       width: "100%",
-                      maxHeight: "150px",
+                      height: "auto",
+                      maxHeight: "180px",
+                      aspectRatio: "16/9",
                       borderRadius: ".5rem",
-                      objectFit: "contain",
+                      objectFit: "cover", 
+                      display: "block",
                     }}
                   />
                 ) : (

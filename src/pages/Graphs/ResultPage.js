@@ -8,19 +8,19 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/MediaQuery.css"
 
 const ResultPage = ({ showFinish }) => {
-  const categories = useSelector((state) => state?.quizCategories?.responses);
+  const categories =
+    useSelector((state) => state?.quizCategories?.responses) || {};
 
-  console.log("categories", categories);
+  console.log("Categories from result page:", categories);
 
-  const chartData = Object.values(categories || {});
-  const labels = Object.keys(categories || {});
-  const colors = ["#85823F", "#EBBE2D", "#DA5931"]; // Customizable colors
+  const chartData = Object.values(categories);
+  const labels = Object.keys(categories);
+  const colors = ["#85823F", "#EBBE2D", "#DA5931"]; 
 
-  const total = chartData?.reduce((sum, value) => sum + value, 0);
+  const total = chartData.reduce((sum, value) => sum + (value || 0), 0);
   const percentages = chartData.map((value) =>
     total > 0 ? ((value / total) * 100).toFixed(1) : "0.0"
   );
-
 
   console.log("fisish state test", showFinish);
 
