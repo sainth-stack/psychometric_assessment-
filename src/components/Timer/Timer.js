@@ -9,7 +9,7 @@ const Timer = ({
   setIsQuizCompleted,
   isQuizCompleted,
   onFinish,
-  initialTime = 300,
+  initialTime = 600,
 }) => {
 
 

@@ -63,7 +63,7 @@ const ConditionsPage = ({ onStart }) => {
               Psychometric Test
             </Typography>
             <Typography variant="body1" sx={{ fontWeight: 600 }}>
-              {questions.length} Questions | 5 Minutes
+              {questions.length} Questions | 10 Minutes
             </Typography>
           </Box>
         </Box>

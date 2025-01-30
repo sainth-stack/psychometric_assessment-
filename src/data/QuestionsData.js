@@ -17,13 +17,13 @@ export const questions = [
         label: "B",
         image: Images.img2,
         isImage: true,
-        category: ["RealWorlders,ImplementationSpecialists"],
+        category: ["ImplementationSpecialists"],
       },
       {
         label: "C",
         image: Images.img3,
         isImage: true,
-        category: ["DisruptiveInnovator"],
+        category: ["ImplementationSpecialists"],
       },
     ],
   },
@@ -90,24 +90,24 @@ export const questions = [
         label: "B",
         image: Images.img11,
         isImage: true,
-        category: ["DisruptiveInnovator,RealWorlders"],
+        category: ["DisruptiveInnovator"],
       },
       {
         label: "C",
         image: Images.img12,
         isImage: true,
-        category: ["ImplementationSpecialists"],
+        category: ["ImplementationSpecialists,RealWorlders"],
       },
     ],
   },
   {
     id: 5,
-    question: "How do you collaborate in a team ?",
+    question: "How do you collaborate in a team   ?",
     options: [
       {
         label: "A",
         text: " On their own",
-        category: ["RealWorlders,ImplementationSpecialists"],
+        category: ["ImplementationSpecialists"],
       },
       {
         label: "B",
@@ -133,7 +133,7 @@ export const questions = [
       {
         label: "B",
         text: "to learn through self-discovery and experimentation",
-        category: ["DisruptiveInnovator,RealWorlders"],
+        category: ["DisruptiveInnovator"],
       },
     ],
   },
@@ -178,7 +178,7 @@ export const questions = [
       {
         label: "A",
         text: "tend to exit parties early, to catch up next day work.",
-        category: ["RealWorlders", "ImplementationSpecialists"],
+        category: ["RealWorlders,ImplementationSpecialists"],
       },
       {
         label: "B",
@@ -199,7 +199,7 @@ export const questions = [
       {
         label: "B",
         text: "Show appreciation to boost teamwork.",
-        category: ["RealWorlders", "ImplementationSpecialists"],
+        category: [ "ImplementationSpecialists"],
       },
     ],
   },
@@ -231,7 +231,7 @@ export const questions = [
       {
         label: "B",
         text: "facts and the current situation.",
-        category: ["RealWorlders", "ImplementationSpecialists"],
+        category: ["RealWorlders,ImplementationSpecialists"],
       },
     ],
   },
@@ -247,7 +247,7 @@ export const questions = [
       {
         label: "B",
         text: "spend too much time collecting information.",
-        category: ["RealWorlders", "ImplementationSpecialists"],
+        category: [ "ImplementationSpecialists"],
       },
     ],
   },
@@ -258,12 +258,12 @@ export const questions = [
       {
         label: "A",
         text: "a keen eye for detail and observation.",
-        category: ["RealWorlders", "ImplementationSpecialists"],
+        category: ["RealWorlders,ImplementationSpecialists"],
       },
       {
         label: "B",
         text: "the ability to see beyond the surface and understand things profoundly.",
-        category: ["DisruptiveInnovator", "RealWorlders"],
+        category: ["DisruptiveInnovator"],
       },
     ],
   },
@@ -274,7 +274,7 @@ export const questions = [
       {
         label: "A",
         text: "rely on concrete evidence and tangible experiences.",
-        category: ["RealWorlders", "ImplementationSpecialists"],
+        category: ["RealWorlders,ImplementationSpecialists"],
       },
       {
         label: "B",
@@ -284,7 +284,7 @@ export const questions = [
       {
         label: "C",
         text: "rely on concepts and principles",
-        category: ["RealWorlders", "ImplementationSpecialists"],
+        category: ["RealWorlders,ImplementationSpecialists"],
       },
     ],
   },
@@ -301,7 +301,7 @@ export const questions = [
       {
         label: "B",
         text: "Answer immediately.",
-        category: ["RealWorlders", "ImplementationSpecialists"],
+        category: ["RealWorlders,ImplementationSpecialists"],
       },
     ],
   },
@@ -339,7 +339,7 @@ export const questions = [
       {
         label: "B",
         text: "Wait for instructions from a team leader and focus on completing the tasks assigned to you.",
-        category: ["RealWorlders", "ImplementationSpecialists"],
+        category: ["RealWorlders,ImplementationSpecialists"],
       },
       {
         label: "C",

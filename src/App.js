@@ -48,11 +48,11 @@ const App = () => {
           <Route
             path="/"
             element={
+               isAuthenticated ? (
                 <ConditionsPage onStart={startQuiz} />
-              // isAuthenticated ? (
-              // ) : (
-              //   <Navigate to="/login" replace />
-              // )
+               ) : (
+                 <Navigate to="/login" replace />
+               )
             }
           />
 
@@ -60,15 +60,15 @@ const App = () => {
           <Route
             path="/quiz"
             element={
+               isAuthenticated ? (
+                 quizStarted ? (
                   <QuizPage onFinish={finishQuiz} />
-              // isAuthenticated ? (
-              //   quizStarted ? (
-              //   ) : (
-              //     <Navigate to="/" replace />
-              //   )
-              // ) : (
-              //   <Navigate to="/login" replace />
-              // )
+                 ) : (
+                   <Navigate to="/" replace />
+                 )
+               ) : (
+                 <Navigate to="/login" replace />
+               )
             }
           />
 
