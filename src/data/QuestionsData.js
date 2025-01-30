@@ -27,31 +27,31 @@ export const questions = [
       },
     ],
   },
-   {
-     id: 2,
-     question:
-       "If you could swap personalities with someone for a year, who would you choose and why?",
-     options: [
-       {
-         label: "A",
-         image: Images.img4,
-         isImage: true,
-         category: ["DisruptiveInnovator"],
-       },
-       {
-         label: "B",
-         image: Images.img5,
-         isImage: true,
-         category: ["RealWorlders,ImplementationSpecialists"],
-       },
-       {
-         label: "C",
-         image: Images.img6,
-         isImage: true,
-         category: ["ImplementationSpecialists"],
-       },
-     ],
-   },
+  {
+    id: 2,
+    question:
+      "If you could swap personalities with someone for a year, who would you choose and why?",
+    options: [
+      {
+        label: "A",
+        image: Images.img4,
+        isImage: true,
+        category: ["DisruptiveInnovator"],
+      },
+      {
+        label: "B",
+        image: Images.img5,
+        isImage: true,
+        category: ["RealWorlders,ImplementationSpecialists"],
+      },
+      {
+        label: "C",
+        image: Images.img6,
+        isImage: true,
+        category: ["ImplementationSpecialists"],
+      },
+    ],
+  },
   {
     id: 3,
     question: "What kind of work environment suits you best?",
@@ -102,7 +102,7 @@ export const questions = [
   },
   {
     id: 5,
-    question: "Do you tend to let things happen?",
+    question: "How do you collaborate in a team ?",
     options: [
       {
         label: "A",
