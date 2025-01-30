@@ -41,15 +41,23 @@ const QuizPage = ({ onFinish }) => {
   const [answers, setAnswers] = useState([]);
   const [showWarning, setShowWarning] = useState(false);
 
-const handleOptionSelect = (selectedOption) => {
-  console.log("options checking", selectedOption.category);
 
-  if (answers[currentQuestion] !== selectedOption?.label) {
+
+
+  const handleOptionSelect = (selectedOption) => {
+    console.log("Options checking:", selectedOption.category);
+
+    // If the selected option is already chosen, do nothing
+    if (answers[currentQuestion] === selectedOption?.label) {
+      return; // Prevents unnecessary re-selection and category incrementing
+    }
+
     const updatedAnswers = [...answers];
     const previousAnswer = updatedAnswers[currentQuestion];
 
     let previousCategories = [];
 
+    // Get categories of the previously selected option
     if (previousAnswer) {
       const previousSelectedOption = currentQuestions[
         currentQuestion
@@ -57,31 +65,32 @@ const handleOptionSelect = (selectedOption) => {
 
       if (previousSelectedOption) {
         previousCategories = previousSelectedOption.category.flatMap((cat) =>
-          cat.split(",")
+          cat.split(",").map((c) => c.trim())
         );
       }
     }
 
+    // Update answer
     updatedAnswers[currentQuestion] = selectedOption.label;
     setAnswers(updatedAnswers);
     setShowWarning(false);
 
+    // Remove previous categories
     previousCategories.forEach((cat) => {
-      if (!selectedOption.category.includes(cat)) {
-        dispatch(decrementCategory({ category: cat.trim() }));
-      }
+      dispatch(decrementCategory({ category: cat }));
     });
 
-    // Find categories that are newly selected and increment only those
-    selectedOption.category
-      .flatMap((cat) => cat.split(","))
-      .forEach((cat) => {
-        if (!previousCategories.includes(cat.trim())) {
-          dispatch(incrementCategory({ category: cat.trim() })); // Corrected here
-        }
-      });
-  }
-};
+    // Add new categories
+    const newCategories = selectedOption.category.flatMap((cat) =>
+      cat.split(",").map((c) => c.trim())
+    );
+
+    newCategories.forEach((cat) => {
+      dispatch(incrementCategory({ category: cat }));
+    });
+  };
+
+  
 
 
 

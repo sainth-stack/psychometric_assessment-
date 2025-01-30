@@ -6,6 +6,7 @@ const initialState = {
     RealWorlders: 0,
     DisruptiveInnovator: 0,
   },
+  selectedAnswers: {}, // Track selected options for each question
 };
 
 const quizSlice = createSlice({
@@ -13,18 +14,21 @@ const quizSlice = createSlice({
   initialState,
   reducers: {
     incrementCategory: (state, action) => {
-      const { category } = action.payload;
+      const { questionId, category } = action.payload;
       const categories = Array.isArray(category) ? category : [category];
 
       categories.forEach((cat) => {
-        const trimmedCat = cat.trim(); // Trim spaces if any
+        const trimmedCat = cat.trim();
         if (state.responses[trimmedCat] !== undefined) {
           state.responses[trimmedCat] += 1;
         }
       });
+
+      // Store selected option for the question
+      state.selectedAnswers[questionId] = categories;
     },
     decrementCategory: (state, action) => {
-      const { category } = action.payload;
+      const { questionId, category } = action.payload;
       const categories = Array.isArray(category) ? category : [category];
 
       categories.forEach((cat) => {
@@ -36,9 +40,13 @@ const quizSlice = createSlice({
           state.responses[trimmedCat] -= 1;
         }
       });
+
+      // Remove stored answer for the question
+      delete state.selectedAnswers[questionId];
     },
     resetQuiz: (state) => {
       state.responses = { ...initialState.responses };
+      state.selectedAnswers = {};
     },
   },
 });
