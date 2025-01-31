@@ -102,7 +102,7 @@ export const questions = [
    },
    {
      id: 5,
-     question: "How do you collaborate in a team   ?",
+     question: "Do you tend to let things happen ?",
      options: [
        {
          label: "A",
@@ -127,12 +127,12 @@ export const questions = [
      options: [
        {
          label: "A",
-         text: " to follow a structured plan or procedure",
+         text: " To follow a structured plan or procedure",
          category: ["RealWorlders,ImplementationSpecialists"],
        },
        {
          label: "B",
-         text: "to learn through self-discovery and experimentation",
+         text: "To learn through self-discovery and experimentation",
          category: ["DisruptiveInnovator"],
        },
      ],
@@ -143,7 +143,7 @@ export const questions = [
      options: [
        {
          label: "A",
-         text: "think and plan before taking action",
+         text: "Think and plan before taking action",
          category: ["RealWorlders"],
        },
        {
@@ -165,7 +165,7 @@ export const questions = [
        },
        {
          label: "B",
-         text: "have a small, tight-knit group of close relationships",
+         text: "Have a small, tight-knit group of close relationships",
          category: ["ImplementationSpecialists"],
        },
      ],
@@ -209,12 +209,12 @@ export const questions = [
      options: [
        {
          label: "A",
-         text: "logic over intuition",
+         text: "Evidence-based decision making",
          category: ["RealWorlders"],
        },
        {
          label: "B",
-         text: "instincts and emotions",
+         text: "Gut feeling",
          category: ["DisruptiveInnovator"],
        },
      ],

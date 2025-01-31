@@ -60,7 +60,9 @@ const Question = ({
             mb: { xs: "1rem", sm: "1.5rem" },
           }}
         >
-          {questionData?.question}
+          {questionData?.question.charAt(0).toUpperCase() +
+            questionData?.question.slice(1)}
+        
         </Typography>
 
         <Grid
@@ -110,7 +112,7 @@ const Question = ({
                       maxHeight: "180px",
                       aspectRatio: "16/9",
                       borderRadius: ".5rem",
-                      objectFit: "cover", 
+                      objectFit: "cover",
                       display: "block",
                     }}
                   />
@@ -121,7 +123,7 @@ const Question = ({
                       textAlign: "center",
                     }}
                   >
-                    {option.label}. {option.text}
+                      {option.label}. {option.text.charAt(0).toUpperCase()+option.text.slice(1)}
                   </Typography>
                 )}
               </Button>
