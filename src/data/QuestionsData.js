@@ -116,7 +116,7 @@ export const questions = [
        },
        {
          label: "C",
-         text: "By Careful Planing",
+         text: "By careful planing",
          category: ["RealWorlders,ImplementationSpecialists"],
        },
      ],
@@ -291,7 +291,7 @@ export const questions = [
 
    {
      id: 16,
-     question: "If you get a call from your manager, you?",
+     question: "If you get a call from your manager, you ?",
      options: [
        {
          label: "A",
