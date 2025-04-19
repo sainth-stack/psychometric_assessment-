@@ -10,6 +10,7 @@ import QuizPage from "./pages/QuizPage/QuizPage";
 import ResultPage from "./pages/Graphs/ResultPage";
 import GoogleLoginComponent from "./components/GoogleLogin/GoogleLoogin";
 import toast, { Toaster } from "react-hot-toast";
+import TestLanding from "./TestLanding";
 
 const App = () => {
   const [quizStarted, setQuizStarted] = useState(false);
@@ -37,6 +38,7 @@ const App = () => {
 
       <Router>
         <Routes>
+          <Route path="/test-entry" element={<TestLanding />} />
           {/* Login Route */}
           <Route
             path="/login"
@@ -44,15 +46,15 @@ const App = () => {
           />
 
           {/* Protected Route for Conditions Page */}
-          
+
           <Route
             path="/"
             element={
-               isAuthenticated ? (
+              isAuthenticated ? (
                 <ConditionsPage onStart={startQuiz} />
-               ) : (
-                 <Navigate to="/login" replace />
-               )
+              ) : (
+                <Navigate to="/login" replace />
+              )
             }
           />
 
@@ -60,15 +62,15 @@ const App = () => {
           <Route
             path="/quiz"
             element={
-               isAuthenticated ? (
-                 quizStarted ? (
+              isAuthenticated ? (
+                quizStarted ? (
                   <QuizPage onFinish={finishQuiz} />
-                 ) : (
-                   <Navigate to="/" replace />
-                 )
-               ) : (
-                 <Navigate to="/login" replace />
-               )
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              ) : (
+                <Navigate to="/login" replace />
+              )
             }
           />
 
