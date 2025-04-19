@@ -124,13 +124,17 @@ const QuizPage = ({ onFinish }) => {
   };
 
 
-  /* api call for storing results */
+
   const handleSubmitResults = async () => {
     console.log("     responses: answers, ", responses);
-      const userEmail = localStorage.getItem("userEmail");
+    const userEmail = localStorage.getItem("userEmail");
+    const candidateId = localStorage.getItem("candidateId");
+    
+    console.log("candidate id",candidateId)
       const resultData = {
         email: userEmail,
-      results: responses,
+        candidateId: candidateId,
+        results: responses,
       };
 
       try {

@@ -26,7 +26,9 @@ const GoogleLoginComponent = ({ onLogin }) => {
     if (candidateId && token) {
       setLoading(true);
       axios
-        .post(`${ENDPOINT}/api/users/google-login`, { token })
+        .post(`${"https://test.talentspotifyapp.com"}/api/users/google-login`, {
+          token,
+        })
         .then((response) => {
           const userEmail = response?.data?.user?.email;
           if (userEmail) {
@@ -55,9 +57,12 @@ const GoogleLoginComponent = ({ onLogin }) => {
     try {
       const { credential } = credentialResponse;
 
-      const response = await axios.post(`${ENDPOINT}/api/users/google-login`, {
-        token: credential,
-      });
+      const response = await axios.post(
+        `${"https://test.talentspotifyapp.com"}/api/users/google-login`,
+        {
+          token: credential,
+        }
+      );
 
       const userEmail = response?.data?.user?.email;
       if (userEmail) {

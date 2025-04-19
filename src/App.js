@@ -39,13 +39,11 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/test-entry" element={<TestLanding />} />
-          {/* Login Route */}
           <Route
             path="/login"
             element={<GoogleLoginComponent onLogin={handleLogin} />}
           />
 
-          {/* Protected Route for Conditions Page */}
 
           <Route
             path="/"
