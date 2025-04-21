@@ -18,40 +18,38 @@ const GoogleLoginComponent = ({ onLogin }) => {
   const [loading, setLoading] = useState(false);
   const [autoLoggedIn, setAutoLoggedIn] = useState(false);
 
-  // Auto-login for test candidates
-  useEffect(() => {
-    const candidateId = localStorage.getItem("candidateId");
-    const token = localStorage.getItem("testToken");
+  // useEffect(() => {
+  //   const candidateId = localStorage.getItem("candidateId");
+  //   const token = localStorage.getItem("testToken");
 
-    if (candidateId && token) {
-      setLoading(true);
-      axios
-        .post(`${"https://test.talentspotifyapp.com"}/api/users/google-login`, {
-          token,
-        })
-        .then((response) => {
-          const userEmail = response?.data?.user?.email;
-          if (userEmail) {
-            localStorage.setItem("userEmail", userEmail);
-          }
+  //   if (candidateId && token) {
+  //     setLoading(true);
+  //     axios
+  //       .post(`${"https://test.talentspotifyapp.com"}/api/users/google-login`, {
+  //         token,
+  //       })
+  //       .then((response) => {
+  //         const userEmail = response?.data?.user?.email;
+  //         if (userEmail) {
+  //           localStorage.setItem("userEmail", userEmail);
+  //         }
 
-          toast.success("Auto-login successful!");
-          if (onLogin) onLogin(response.data);
-          setAutoLoggedIn(true);
-          navigate("/"); // Go to test conditions page
-        })
-        .catch((error) => {
-          console.error(
-            "Auto-login failed:",
-            error.response?.data || error.message
-          );
-          toast.error("Auto-login failed. Please try again.");
-        })
-        .finally(() => setLoading(false));
-    }
-  }, [navigate, onLogin]);
+  //         toast.success("Auto-login successful!");
+  //         if (onLogin) onLogin(response.data);
+  //         setAutoLoggedIn(true);
+  //         navigate("/"); 
+  //       })
+  //       .catch((error) => {
+  //         console.error(
+  //           "Auto-login failed:",
+  //           error.response?.data || error.message
+  //         );
+  //         toast.error("Auto-login failed. Please try again.");
+  //       })
+  //       .finally(() => setLoading(false));
+  //   }
+  // }, [navigate, onLogin]);
 
-  // Manual Google login
   const handleGoogleSuccess = async (credentialResponse) => {
     setLoading(true);
     try {

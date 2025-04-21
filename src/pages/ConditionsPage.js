@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { conditions } from "../data/ConditionsData";
 import { Box, Typography, Checkbox, Button, Paper } from "@mui/material";
 import logo from "../Images/Logo.png"
@@ -18,6 +18,23 @@ const ConditionsPage = ({ onStart }) => {
       toast.info("Please accept the conditions to start the Test.");
     }
   };
+
+
+  useEffect(()=>{
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const candidateId = urlParams.get("candidateId");
+    const token = urlParams.get("token");
+    if (candidateId && token) {
+      localStorage.setItem("candidateId", candidateId);
+      localStorage.setItem("testToken", token);
+      // No longer setting isAuthenticated here
+    }
+const email = localStorage.getItem('userEmail')
+if(!email){
+  navigate('/login')
+}
+  },[])
 
   return (
     <Box

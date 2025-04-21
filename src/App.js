@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
+  useLocation,
 } from "react-router-dom";
 import ConditionsPage from "./pages/ConditionsPage";
 import QuizPage from "./pages/QuizPage/QuizPage";
@@ -14,7 +15,7 @@ import TestLanding from "./TestLanding";
 
 const App = () => {
   const [quizStarted, setQuizStarted] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Track authentication state
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const startQuiz = () => setQuizStarted(true);
 
@@ -23,7 +24,24 @@ const App = () => {
     setQuizStarted(false);
   };
 
-  const handleLogin = () => setIsAuthenticated(true); // Set authentication state
+  const handleLogin = () => setIsAuthenticated(true);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const candidateId = urlParams.get("candidateId");
+    const token = urlParams.get("token");
+    if (candidateId && token) {
+      localStorage.setItem("candidateId", candidateId);
+      localStorage.setItem("testToken", token);
+      // No longer setting isAuthenticated here
+    } else {
+      const storedCandidateId = localStorage.getItem("candidateId");
+      const storedToken = localStorage.getItem("testToken");
+      if (storedCandidateId && storedToken) {
+        console.log("Using stored values:", { storedCandidateId, storedToken });
+      }
+    }
+  }, [window.location.search]);
 
   return (
     <>
@@ -44,43 +62,28 @@ const App = () => {
             element={<GoogleLoginComponent onLogin={handleLogin} />}
           />
 
-
           <Route
             path="/"
             element={
-              isAuthenticated ? (
-                <ConditionsPage onStart={startQuiz} />
-              ) : (
-                <Navigate to="/login" replace />
-              )
+              <ConditionsPage onStart={startQuiz} />
             }
           />
 
-          {/* Protected Route for Quiz Page */}
           <Route
             path="/quiz"
             element={
-              isAuthenticated ? (
-                quizStarted ? (
-                  <QuizPage onFinish={finishQuiz} />
-                ) : (
-                  <Navigate to="/" replace />
-                )
+              quizStarted ? (
+                <QuizPage onFinish={finishQuiz} />
               ) : (
-                <Navigate to="/login" replace />
+                <Navigate to="/" replace />
               )
             }
           />
 
-          {/* Protected Route for Result Page */}
           <Route
             path="/result"
             element={
-              isAuthenticated ? (
-                <ResultPage />
-              ) : (
-                <Navigate to="/login" replace />
-              )
+              <ResultPage />
             }
           />
         </Routes>
@@ -90,8 +93,3 @@ const App = () => {
 };
 
 export default App;
-
-
-
-
-
