@@ -12,6 +12,7 @@ import ResultPage from "./pages/Graphs/ResultPage";
 import GoogleLoginComponent from "./components/GoogleLogin/GoogleLoogin";
 import toast, { Toaster } from "react-hot-toast";
 import TestLanding from "./TestLanding";
+import TestCompleted from "./pages/test-completed";
 
 const App = () => {
   const [quizStarted, setQuizStarted] = useState(false);
@@ -84,6 +85,12 @@ const App = () => {
             path="/result"
             element={
               <ResultPage />
+            }
+          />
+                    <Route
+            path="/test-completed"
+            element={
+              <TestCompleted />
             }
           />
         </Routes>

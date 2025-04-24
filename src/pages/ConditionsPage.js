@@ -5,6 +5,8 @@ import logo from "../Images/Logo.png"
 import { useNavigate } from "react-router-dom";
 import { questions } from "../data/QuestionsData";
 import toast from "react-hot-toast";
+import axios from "axios";
+import { ENDPOINT } from "../utils/EndPoint";
 
 const ConditionsPage = ({ onStart }) => {
   const navigate = useNavigate();
@@ -19,22 +21,49 @@ const ConditionsPage = ({ onStart }) => {
     }
   };
 
-
-  useEffect(()=>{
-
+  const fetchCandidateData = async (candidateId) => {
+    const id = candidateId || localStorage.getItem('candidateId');
+    try {
+      const response = await axios.get(
+        `${ENDPOINT}/api/users/user-results?candidateId=${id}`
+      );
+      
+      // Check if response contains valid results data
+      if (response.data && response.data.results) { // Adjust this condition based on your actual response structure
+        console.log("Results found", response.data);
+        navigate('/test-completed');
+      } else {
+        // If no results found, check for email
+        const email = localStorage.getItem('userEmail');
+        if (!email) {
+          navigate('/login');
+        }
+        // If email exists but no results, stay on current page or handle accordingly
+      }
+    } catch (error) {
+      console.error("Error fetching candidate data:", error);
+      // On error, check for email
+      const email = localStorage.getItem('userEmail');
+      if (!email) {
+        navigate('/login');
+      }
+    }
+  };
+  
+  useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const candidateId = urlParams.get("candidateId");
     const token = urlParams.get("token");
+    
+    // Store candidateId and token if they exist in URL
     if (candidateId && token) {
       localStorage.setItem("candidateId", candidateId);
       localStorage.setItem("testToken", token);
-      // No longer setting isAuthenticated here
     }
-const email = localStorage.getItem('userEmail')
-if(!email){
-  navigate('/login')
-}
-  },[])
+    
+    // Fetch candidate data (will handle navigation based on results/email)
+    fetchCandidateData(candidateId);
+  }, []);
 
   return (
     <Box

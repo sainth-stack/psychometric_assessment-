@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { questions } from "../../data/QuestionsData";
 import Question from "../../components/Question/Question";
-import { Button, Box, Typography } from "@mui/material";
+import { Button, Box, Typography, CircularProgress } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
   decrementCategory,
@@ -40,9 +40,7 @@ const QuizPage = ({ onFinish }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [showWarning, setShowWarning] = useState(false);
-
-
-
+  const [isSubmitting, setIsSubmitting] = useState(false); // New state for loading
 
   const handleOptionSelect = (selectedOption) => {
     console.log("Options checking:", selectedOption.category);
@@ -90,11 +88,6 @@ const QuizPage = ({ onFinish }) => {
     });
   };
 
-  
-
-
-
-
   // Handle next question navigation
   const handleNext = () => {
     if (!answers[currentQuestion]) {
@@ -109,7 +102,6 @@ const QuizPage = ({ onFinish }) => {
     }
   };
 
-
   useEffect(() => {
     if (isQuizCompleted) {
       navigate("/result");
@@ -123,29 +115,29 @@ const QuizPage = ({ onFinish }) => {
     setShowWarning(false);
   };
 
-
-
   const handleSubmitResults = async () => {
     console.log("     responses: answers, ", responses);
     const userEmail = localStorage.getItem("userEmail");
     const candidateId = localStorage.getItem("candidateId");
     
     console.log("candidate id",candidateId)
-      const resultData = {
-        email: userEmail,
-        candidateId: candidateId,
-        results: responses,
-      };
+    const resultData = {
+      email: userEmail,
+      candidateId: candidateId,
+      results: responses,
+    };
 
-      try {
-        await axios.post(`${ENDPOINT}/api/users/save-results`, resultData);
-        navigate("/result");
-      } catch (error) {
-        console.error("Error submitting results:", error);
-      }
+    setIsSubmitting(true); // Start loading
+    
+    try {
+      await axios.post(`${ENDPOINT}/api/users/save-results`, resultData);
+      navigate("/result");
+    } catch (error) {
+      console.error("Error submitting results:", error);
+    } finally {
+      setIsSubmitting(false); // Stop loading regardless of success or failure
+    }
   };
-
-
 
   return (
     <Box
@@ -217,8 +209,15 @@ const QuizPage = ({ onFinish }) => {
               Back
             </Button>
             {currentQuestion === currentQuestions.length - 1 ? (
-              <CustomSubmitButton onClick={handleSubmitResults}>
-                Submit
+              <CustomSubmitButton 
+                onClick={handleSubmitResults}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <CircularProgress size={24} color="inherit" />
+                ) : (
+                  "Submit"
+                )}
               </CustomSubmitButton>
             ) : (
               <CustomSubmitButton
