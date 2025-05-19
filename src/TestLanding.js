@@ -8,11 +8,12 @@ const TestLanding = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const candidateId = urlParams.get("candidateId");
     const token = urlParams.get("token");
+    const hr = urlParams.get("hr");
 
     if (candidateId && token) {
       localStorage.setItem("candidateId", candidateId);
       localStorage.setItem("testToken", token);
-
+      localStorage.setItem("hr", hr);
       
       navigate("/login");
     } else {

@@ -119,12 +119,14 @@ const QuizPage = ({ onFinish }) => {
     console.log("     responses: answers, ", responses);
     const userEmail = localStorage.getItem("userEmail");
     const candidateId = localStorage.getItem("candidateId");
-    
+    const hr = localStorage.getItem("hr");
+
     console.log("candidate id",candidateId)
     const resultData = {
       email: userEmail,
       candidateId: candidateId,
       results: responses,
+      hr
     };
 
     setIsSubmitting(true); // Start loading

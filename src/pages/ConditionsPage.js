@@ -54,13 +54,13 @@ const ConditionsPage = ({ onStart }) => {
     const urlParams = new URLSearchParams(window.location.search);
     const candidateId = urlParams.get("candidateId");
     const token = urlParams.get("token");
-    
+    const hr = urlParams.get("hr");
     // Store candidateId and token if they exist in URL
     if (candidateId && token) {
       localStorage.setItem("candidateId", candidateId);
       localStorage.setItem("testToken", token);
+      localStorage.setItem("hr", hr);
     }
-    
     // Fetch candidate data (will handle navigation based on results/email)
     fetchCandidateData(candidateId);
   }, []);
